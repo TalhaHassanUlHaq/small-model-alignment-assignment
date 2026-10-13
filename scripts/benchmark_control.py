@@ -43,17 +43,17 @@ sys.path.insert(0, str(root))
 from alignment.judge import run_judge, summarize
 @kbench.task(name={task!r})
 def evaluate_saved_pairs(llm):
+    judge = kbench.llms['google/gemini-3.6-flash']
     def call(prompt):
         with kbench.chats.new('independent_pair_batch'):
-            return llm.prompt(prompt)
+            return judge.prompt(prompt)
     for track in ['hh', 'uf', 'persona']:
         pairs = root / 'pairs' / f'pairs_{{track}}.jsonl'
         output = root / 'judgments' / f'judged_{{track}}.jsonl'
         run_judge(pairs, output, call, 'google/gemini-3.6-flash')
         summary = summarize(pairs, output, output.with_suffix('.summary.json'))
         print('SUMMARY', track, summary)
-    return 'Judgments and failure logs saved'
-evaluate_saved_pairs.run(kbench.llm)
+evaluate_saved_pairs.run(kbench.llms['google/gemini-3.6-flash'])
 '''
     path = folder / "task.py"
     path.write_text(source, encoding="utf-8")

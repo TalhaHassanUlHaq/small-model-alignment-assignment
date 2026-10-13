@@ -88,19 +88,23 @@ def pair_outputs(baseline_path, candidate_path, output, seed=42):
     write_json(output.with_suffix(".identity.json"), mapping)
 
 
-def generate_all(data, output, locate):
+def generate_all(data, output, locate, sanity_only=False):
     data, out = Path(data), Path(output)
     cfg = read_json("configs/experiments.json")
     manifest = read_json(data / "manifest.json")
     sft = locate("sft/best/complete.json").parent
     for evaluation, track in [("alpaca", "uf"), ("hh", "hh")]:
         prompts = read_json(data / f"eval_{evaluation}.json")
+        if sanity_only:
+            prompts = prompts[:5]
         for name, model, revision in [("base", cfg["sft"]["model"], manifest["model_revision"]),
                                      ("sft", sft, None), (track, locate(f"{track}/best/complete.json").parent, None)]:
             generate(model, prompts, out / f"{evaluation}_{name}.jsonl", name, cfg["generation"], revision)
         pair_outputs(out / f"{evaluation}_sft.jsonl", out / f"{evaluation}_{track}.jsonl", out / f"pairs_{track}.jsonl")
     persona_path = locate("persona/best/adapter_config.json").parent
     prompts = read_json(data / "eval_persona.json")
+    if sanity_only:
+        prompts = prompts[:5]
     for name, adapter in [("persona_base", None), ("persona_lora", persona_path)]:
         generate(cfg["persona"]["model"], prompts, out / f"{name}.jsonl", name, cfg["generation"],
                  manifest["persona_model_revision"], persona=True, adapter=adapter)

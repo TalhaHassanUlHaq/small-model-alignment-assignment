@@ -75,9 +75,11 @@ def main(stage):
         os.environ["CUDA_VISIBLE_DEVICES"] = "0"
         from alignment.persona import train_persona
         train_persona(upstream("prepared/manifest.json").parent, out / "persona")
-    elif stage == "generate":
+    elif stage in {"generate", "generation_sanity"}:
         from alignment.generate import generate_all
-        generate_all(upstream("prepared/manifest.json").parent, out / "generations", upstream)
+        generate_all(upstream("prepared/manifest.json").parent,
+                     out / ("sanity_generations" if stage == "generation_sanity" else "generations"),
+                     upstream, sanity_only=stage == "generation_sanity")
     else:
         raise ValueError(stage)
 

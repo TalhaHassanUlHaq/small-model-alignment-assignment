@@ -36,6 +36,9 @@ def response_scores(model, batch):
     """Return summed causal log-probabilities and scored-token counts per row."""
     device = next(model.parameters()).device
     batch = to_device(batch, device)
+    if batch["input_ids"].shape[1] == 0:
+        anchor = next(model.parameters()).reshape(-1)[0] * 0
+        return anchor.expand(batch["input_ids"].shape[0]), batch["labels"].sum(dim=1)
     logits = model(input_ids=batch["input_ids"], attention_mask=batch["attention_mask"]).logits
     target = batch["labels"][:, 1:]
     mask = target.ne(-100)

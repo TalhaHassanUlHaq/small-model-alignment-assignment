@@ -7,6 +7,8 @@ import json
 import os
 from pathlib import Path
 import sys
+import threading
+import time
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -72,13 +74,14 @@ subprocess.run([sys.executable, '-m', 'alignment.stage', '--stage', {stage!r}], 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["preflight", "push", "status", "download", "prepare"])
+    parser.add_argument("action", choices=["preflight", "push", "status", "download", "prepare", "logs"])
     parser.add_argument("--stage", default="smoke")
     parser.add_argument("--owner")
     parser.add_argument("--source", action="append", default=[])
     parser.add_argument("--kernel")
     parser.add_argument("--output", default="artifacts/kaggle")
     parser.add_argument("--pattern", default="^results/")
+    parser.add_argument("--seconds", type=int, default=30)
     args = parser.parse_args()
     if args.action == "prepare":
         print(prepare_job(args.stage, args.owner or "talhahassanulhaq", args.source))
@@ -103,6 +106,38 @@ def main():
         print(api.kernels_status(args.kernel))
     elif args.action == "download":
         api.kernels_output(args.kernel, path=args.output, file_pattern=args.pattern, force=True, page_size=100)
+    elif args.action == "logs":
+        from kagglesdk.kernels.types.kernels_api_service import ApiGetKernelSessionLogsStreamRequest
+        from alignment.io import append_jsonl
+        events, errors = [], []
+        log_path = Path(args.output) / (args.kernel.split("/")[-1] + ".live.jsonl")
+        def consume():
+            try:
+                with api.build_kaggle_client() as client:
+                    request = ApiGetKernelSessionLogsStreamRequest()
+                    request.user_name, request.kernel_slug = args.kernel.split("/")
+                    request.wait_for_logs_url_seconds = 10
+                    response = client.kernels.kernels_api_client.get_kernel_session_logs_stream(request)
+                    if "text/event-stream" in response.headers.get("Content-Type", ""):
+                        for line in response.iter_lines():
+                            line = line.decode("utf-8") if isinstance(line, bytes) else line
+                            if line.startswith("data:"):
+                                try: entry = json.loads(line[5:])
+                                except ValueError: continue
+                                events.append(entry); append_jsonl(log_path, entry)
+                    else:
+                        entries = response.json()
+                        if isinstance(entries, list):
+                            for entry in entries:
+                                events.append(entry); append_jsonl(log_path, entry)
+            except Exception as error:
+                errors.append(type(error).__name__)
+        worker = threading.Thread(target=consume, daemon=True)
+        worker.start(); worker.join(min(45, args.seconds))
+        lines = [e.get("data", "") for e in events if isinstance(e, dict)]
+        selected = [s for s in lines if any(k in s for k in ["train_loss", "Error", "Traceback", "SANITY", "Generated"])]
+        print("".join((selected or lines)[-8:])[-5000:])
+        print("Log events:", len(events), "Errors:", errors)
 
 
 if __name__ == "__main__":
