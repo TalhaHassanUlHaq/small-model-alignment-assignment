@@ -62,7 +62,7 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
     emit("abstract", " ".join(f"{track.upper()} achieves {s['counts']['win']} wins, {s['counts']['loss']} losses, and {s['counts']['tie']} ties."
                                 for track, s in summaries.items()) or "Full-run results are not yet available; no model-quality conclusion is claimed.")
     provenance = [r"Repository: \url{" + repository + "}." if repository else "Repository publication is pending authentication.",
-                  r"Base models: \path{Qwen/Qwen2.5-0.5B} and \path{HuggingFaceTB/SmolLM2-360M-Instruct}."]
+                  r"Base models: \texttt{Qwen2.5-0.5B} and \texttt{SmolLM2-360M-Instruct} (HuggingFaceTB)."]
     if (results / "prepared" / "manifest.json").exists():
         manifest = read_json(results / "prepared" / "manifest.json")
         for track, splits in manifest["filtering"].items():
