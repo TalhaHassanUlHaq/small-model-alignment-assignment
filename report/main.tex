@@ -1,0 +1,122 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,booktabs,tabularx,graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=*}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\title{Instruction Tuning and Direct Preference Optimization\\on Small Language Models}
+\author{\ReportAuthor}
+\date{\ReportDate}
+\input{generated/metadata.tex}
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+\ReportStatus
+\begin{abstract}
+We study response-masked supervised fine-tuning (SFT), two independent full-parameter
+Direct Preference Optimization (DPO) experiments, and parameter-efficient persona
+alignment. The main policy is Qwen2.5-0.5B; the persona experiment uses
+SmolLM2-360M-Instruct. Comparisons use fixed prompts, identical deterministic
+decoding, and anonymous pairwise judging. \input{generated/abstract.tex}
+\end{abstract}
+
+\section{Repository, models, and data}
+\input{generated/provenance.tex}
+The SFT loader extracts the first user--assistant exchange from UltraChat.
+Preference loaders retain single-turn pairs with matching prompts and distinct
+chosen and rejected responses. Empty, malformed, duplicated, and overlapping
+prompts are removed before subset selection. The same normalized prompt key is
+excluded across training, validation, and the fixed evaluation sets. Training
+prompts longer than 256 tokens are filtered, preserving space for a response.
+Dataset revisions, original row indices, filtering counts, and subset hashes are
+saved in the data manifest. All sampling uses seed 42.
+
+Qwen prompts use the literal template
+\texttt{\#\#\# Instruction:} followed by the instruction and
+\texttt{\#\#\# Response:}, separated by newlines. The persona track uses the
+instruction model's native chat template. Long evaluation prompts retain their
+last 256 tokens. The persona evaluation contains 40 fixed prompts, equally divided
+among cooking, coding, general assistance, and safety-sensitive requests.
+
+\section{Experimental configuration}
+\input{generated/configuration.tex}
+SFT labels mask prompt and padding positions with $-100$. EOS is appended before
+right truncation; a response reaching the context boundary can therefore lose its
+EOS. Logits at position $t-1$ score the token at $t$. SFT minimizes the mean negative
+log-probability over scored response tokens. Accumulation windows are weighted by
+their total response-token count, including the last partial window.
+
+Both main DPO experiments start independently from the same SFT best checkpoint.
+Writing $s_\theta(x,y)=\sum_{t\in\mathrm{response}}\log p_\theta(y_t\mid x,y_{<t})$,
+the implemented objective is
+\begin{equation}
+\mathcal L_{\mathrm{DPO}}=-\frac1B\sum_i\log\sigma\!\left(\beta\left[
+s_\theta(x_i,y_i^+)-s_\theta(x_i,y_i^-)
+-s_{\mathrm{ref}}(x_i,y_i^+)+s_{\mathrm{ref}}(x_i,y_i^-)\right]\right).
+\end{equation}
+The reference has no gradients. Stable log-sigmoid evaluation avoids overflow.
+Implicit rewards are $r^\pm=\beta(s_\theta^\pm-s_{\mathrm{ref}}^\pm)$; reward accuracy
+uses the strict comparison $r^+>r^-$. Identical policies have zero margin and zero
+strict accuracy in exact arithmetic, rather than 50\%. Mixed-precision differences
+can perturb this diagnostic near initialization. SFT checkpoint selection minimizes
+validation loss; DPO maximizes validation reward accuracy, breaking ties by loss.
+
+\section{Parameter choices and deviations}
+\input{generated/deviations.tex}
+LoRA rank 16 and alpha 32 provide a modest trainable subspace; adapting query and
+value projections targets attention while keeping the backbone frozen. Dropout
+0.05 and a 198/22 training/validation split limit unchecked fitting on the small
+persona dataset. Three epochs and learning rate $5\times10^{-5}$ are design choices,
+not claims of optimality. Persona checkpoint selection uses held-out reward
+accuracy. Its reference is the original instruction model with adapters disabled,
+not the Qwen SFT model. TRL and PEFT are used only for this track~\cite{trl,peft}.
+
+\section{Training behavior}
+\input{generated/training.tex}
+\input{generated/figures.tex}
+Training losses diagnose optimization and do not establish response quality.
+Validation metrics determine checkpoint selection; the held-out pairwise
+comparisons below assess the generated responses.
+
+\section{DPO-versus-SFT results}
+\input{generated/results.tex}
+The judge sees only the instruction and anonymous Response A and Response B.
+Response order is randomized with a fixed seed; the position-to-model mapping is
+stored separately. Judging processes five pairs per request with at least five
+seconds between attempts and up to three attempts per batch. Valid partial results
+are retained, missing items retried, and unresolved failures logged. Completed
+judgments are reused on resumption. The judge is instructed to value correctness,
+helpfulness, instruction following, and safety, including appropriate refusal and
+safe redirection for the HH evaluation.
+
+For candidate wins $W$, losses $L$, and ties $T$, decisive win rate is
+$W/(W+L)$ and tie-adjusted rate is $(W+T/2)/(W+L+T)$. Unknowns and failures are
+excluded from these denominators and reported separately against all expected
+pairs. These are raw pairwise win rates, not official length-controlled AlpacaEval
+scores~\cite{alpaca}. Persona style, usefulness, and safety remain separate from
+the main alignment comparisons.
+
+\section{Interpretation and error analysis}
+\input{generated/analysis.tex}
+\input{generated/examples.tex}
+
+\section{Limitations and reproducibility}
+\input{generated/limitations.tex}
+These experiments use one seed and relatively small evaluation sets. A single
+model judge can exhibit position, verbosity, style, or safety biases. Training and
+evaluation data differ in distribution; preference accuracy and generation quality
+need not improve together. A negative or inconclusive result is retained rather
+than replaced by a selectively favorable comparison. The original DPO objective
+and motivation follow Rafailov et al.~\cite{dpo}; the HH preference source follows
+Anthropic's helpful/harmless work~\cite{hh}.
+
+\input{generated/artifacts.tex}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}

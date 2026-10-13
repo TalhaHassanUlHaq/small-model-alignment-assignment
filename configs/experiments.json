@@ -1,0 +1,13 @@
+{
+  "seed": 42,
+  "max_length": 512,
+  "max_prompt_length": 256,
+  "eval_every": 100,
+  "clip_grad_norm": 1.0,
+  "sft": {"model": "Qwen/Qwen2.5-0.5B", "train_size": 30000, "val_size": 1000, "epochs": 1, "batch_size": 2, "accumulation": 16, "lr": 0.00002, "weight_decay": 0.1, "warmup_ratio": 0.03},
+  "hh": {"train_size": 15000, "val_size": 1000, "epochs": 1, "batch_size": 1, "accumulation": 32, "lr": 0.000001, "weight_decay": 0, "beta": 0.1},
+  "uf": {"train_size": 15000, "val_size": 1000, "epochs": 1, "batch_size": 1, "accumulation": 32, "lr": 0.000001, "weight_decay": 0, "beta": 0.1},
+  "persona": {"model": "HuggingFaceTB/SmolLM2-360M-Instruct", "train_size": 198, "val_size": 22, "epochs": 3, "batch_size": 2, "accumulation": 8, "lr": 0.00005, "weight_decay": 0, "beta": 0.1, "rank": 16, "alpha": 32, "dropout": 0.05, "target_modules": ["q_proj", "v_proj"]},
+  "generation": {"do_sample": false, "max_new_tokens": 256, "repetition_penalty": 1.0},
+  "judge": {"preferred_model": "google/gemini-3.6-flash", "batch_size": 5, "sleep_seconds": 5, "max_attempts": 3}
+}

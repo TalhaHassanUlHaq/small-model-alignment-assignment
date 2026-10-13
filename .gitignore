@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.env*
+!.env.example
+.venv/
+.pytest_cache/
+outputs/
+artifacts/
+.kaggle-build/
+*.log
+*.aux
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+report/generated/
+report/figures/
