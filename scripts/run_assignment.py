@@ -15,6 +15,17 @@ def status_name(response):
     return str(response.status).split(".")[-1].upper()
 
 
+def owned_kernel_refs(api):
+    """Return the current user's kernel references.
+
+    Kaggle returns a misleading ``kernels.get`` permission error for a private
+    notebook slug that has not been created.  Looking up the account's own
+    notebook list first lets the controller distinguish that normal case from
+    a real status-query failure on a notebook that does exist.
+    """
+    return {str(kernel.ref).lower() for kernel in api.kernels_list(mine=True, page_size=100)}
+
+
 def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
     api = api_client()
     artifacts = ROOT / "artifacts" / "experiment"
@@ -22,6 +33,7 @@ def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
     stages = ["sft", "hh", "uf", "persona", "generation_sanity", "generate"]
     if start not in stages:
         raise ValueError(start)
+    known_kernels = owned_kernel_refs(api)
     for stage in stages[stages.index(start):]:
         kernel = f"{owner}/small-alignment-{stage.replace('_','-')}"
         sources = [f"{owner}/small-alignment-data"]
@@ -29,14 +41,15 @@ def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
             sources += [f"{owner}/small-alignment-sft"]
         elif stage in {"generation_sanity", "generate"}:
             sources += [f"{owner}/small-alignment-{track}" for track in ["sft", "hh", "uf", "persona"]]
-        try:
-            status = status_name(api.kernels_status(kernel))
-        except Exception as error:
-            # Only a confirmed not-found response authorizes creating a new notebook.
-            response = getattr(error, "response", None)
-            if getattr(response, "status_code", None) != 404:
-                raise
+        if kernel.lower() not in known_kernels:
             status = "NOT_FOUND"
+        else:
+            try:
+                status = status_name(api.kernels_status(kernel))
+            except Exception:
+                # This kernel was listed as owned, so an access failure here
+                # is real and must stop the controller for diagnosis.
+                raise
         if status == "ERROR":
             api.kernels_output(kernel, str(artifacts), file_pattern="^$", force=True, page_size=100)
             raise RuntimeError(f"Existing {stage} job failed; diagnose it before resubmitting")
@@ -51,6 +64,7 @@ def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
                 response = api.kernels_push(str(folder), timeout="32400", acc="NvidiaTeslaT4")
                 if not response.error:
                     print("Started", stage, response.url, flush=True)
+                    known_kernels.add(kernel.lower())
                     break
                 if "Maximum batch GPU session count" not in response.error:
                     raise RuntimeError(response.error)
