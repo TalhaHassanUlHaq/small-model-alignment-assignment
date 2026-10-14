@@ -7,6 +7,8 @@ import subprocess
 import sys
 import time
 
+from requests.exceptions import RequestException
+
 from kaggle_control import api_client, prepare_job, ROOT
 from alignment.io import read_json, write_json
 
@@ -15,7 +17,23 @@ def status_name(response):
     return str(response.status).split(".")[-1].upper()
 
 
-def owned_kernel_refs(api):
+def retry_transient(operation, label, controller=None):
+    """Retry only transport failures without treating a Kaggle job as failed."""
+    attempts = 0
+    while True:
+        try:
+            return operation()
+        except RequestException as error:
+            attempts += 1
+            delay = min(60, 5 * 2 ** min(attempts - 1, 4))
+            if controller is not None:
+                write_json(controller, dict(status="WAITING_FOR_NETWORK", operation=label,
+                                            retry=attempts, updated_at=time.time()))
+            print(f"Temporary network failure during {label}; retrying in {delay}s", flush=True)
+            time.sleep(delay)
+
+
+def owned_kernel_refs(api, controller=None):
     """Return the current user's kernel references.
 
     Kaggle returns a misleading ``kernels.get`` permission error for a private
@@ -23,7 +41,8 @@ def owned_kernel_refs(api):
     notebook list first lets the controller distinguish that normal case from
     a real status-query failure on a notebook that does exist.
     """
-    return {str(kernel.ref).lower() for kernel in api.kernels_list(mine=True, page_size=100)}
+    kernels = retry_transient(lambda: api.kernels_list(mine=True, page_size=100), "kernel list", controller)
+    return {str(kernel.ref).lower() for kernel in kernels}
 
 
 def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
@@ -33,7 +52,7 @@ def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
     stages = ["sft", "hh", "uf", "persona", "generation_sanity", "generate"]
     if start not in stages:
         raise ValueError(start)
-    known_kernels = owned_kernel_refs(api)
+    known_kernels = owned_kernel_refs(api, controller)
     for stage in stages[stages.index(start):]:
         kernel = f"{owner}/small-alignment-{stage.replace('_','-')}"
         sources = [f"{owner}/small-alignment-data"]
@@ -45,7 +64,8 @@ def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
             status = "NOT_FOUND"
         else:
             try:
-                status = status_name(api.kernels_status(kernel))
+                status = status_name(retry_transient(lambda: api.kernels_status(kernel),
+                                                     f"status for {stage}", controller))
             except Exception:
                 # This kernel was listed as owned, so an access failure here
                 # is real and must stop the controller for diagnosis.
@@ -54,14 +74,15 @@ def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
             api.kernels_output(kernel, str(artifacts), file_pattern="^$", force=True, page_size=100)
             raise RuntimeError(f"Existing {stage} job failed; diagnose it before resubmitting")
         if status == "NOT_FOUND":
-            quota = api.quota_view().gpu_quota
+            quota = retry_transient(lambda: api.quota_view().gpu_quota, "GPU quota check", controller)
             remaining = (quota.total_time_allowed - quota.time_used).total_seconds() / 3600
             required = {"sft": 4, "hh": 4, "uf": 4, "persona": 1, "generation_sanity": .5, "generate": 2}[stage]
             if remaining < required:
                 raise RuntimeError(f"Free quota too low for {stage}: {remaining:.2f} hours remain")
             folder = prepare_job(stage, owner, sources)
             while True:
-                response = api.kernels_push(str(folder), timeout="32400", acc="NvidiaTeslaT4")
+                response = retry_transient(lambda: api.kernels_push(str(folder), timeout="32400", acc="NvidiaTeslaT4"),
+                                           f"start {stage}", controller)
                 if not response.error:
                     print("Started", stage, response.url, flush=True)
                     known_kernels.add(kernel.lower())
@@ -75,7 +96,8 @@ def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
             write_json(controller, dict(stage=stage, status=status, kernel=kernel, updated_at=time.time()))
             print(stage, status, flush=True)
             time.sleep(60)
-            status = status_name(api.kernels_status(kernel))
+            status = status_name(retry_transient(lambda: api.kernels_status(kernel),
+                                                 f"status for {stage}", controller))
         if status != "COMPLETE":
             api.kernels_output(kernel, str(artifacts), file_pattern="^$", force=True, page_size=100)
             raise RuntimeError(f"{stage} ended with {status}")
