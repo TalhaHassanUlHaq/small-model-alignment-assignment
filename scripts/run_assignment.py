@@ -114,8 +114,15 @@ def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
                                                        force=True, page_size=100),
                             f"retrieve failure details for {stage}", controller)
             raise RuntimeError(f"{stage} ended with {status}")
-        # Preserve large weights remotely; download all evidence needed for analysis/report.
-        pattern = r"^results/.*\.(json|jsonl)$"
+        # Preserve large weights and tokenizer files remotely. Download only
+        # compact training evidence; large tokenizer JSON files make the
+        # Kaggle download fragile on intermittent connections.
+        if stage in {"sft", "hh", "uf", "persona"}:
+            pattern = (r"^results/(sft|hh|uf|persona)/"
+                       r"(config\.json|data_manifest\.json|metrics\.jsonl|run_status\.json|"
+                       r"best/complete\.json|final/complete\.json)$")
+        else:
+            pattern = r"^results/.*\.(json|jsonl)$"
         retry_transient(lambda: api.kernels_output(kernel, str(artifacts), file_pattern=pattern,
                                                    force=True, page_size=100),
                         f"retrieve {stage} artifacts", controller)
