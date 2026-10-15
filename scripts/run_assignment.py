@@ -79,7 +79,9 @@ def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
                 # is real and must stop the controller for diagnosis.
                 raise
         if status == "ERROR":
-            api.kernels_output(kernel, str(artifacts), file_pattern="^$", force=True, page_size=100)
+            retry_transient(lambda: api.kernels_output(kernel, str(artifacts), file_pattern="^$",
+                                                       force=True, page_size=100),
+                            f"retrieve failure details for {stage}", controller)
             raise RuntimeError(f"Existing {stage} job failed; diagnose it before resubmitting")
         if status == "NOT_FOUND":
             quota = retry_transient(lambda: api.quota_view().gpu_quota, "GPU quota check", controller)
@@ -108,11 +110,15 @@ def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
             status = status_name(retry_transient(lambda: api.kernels_status(kernel),
                                                  f"status for {stage}", controller))
         if status != "COMPLETE":
-            api.kernels_output(kernel, str(artifacts), file_pattern="^$", force=True, page_size=100)
+            retry_transient(lambda: api.kernels_output(kernel, str(artifacts), file_pattern="^$",
+                                                       force=True, page_size=100),
+                            f"retrieve failure details for {stage}", controller)
             raise RuntimeError(f"{stage} ended with {status}")
         # Preserve large weights remotely; download all evidence needed for analysis/report.
         pattern = r"^results/.*\.(json|jsonl)$"
-        api.kernels_output(kernel, str(artifacts), file_pattern=pattern, force=True, page_size=100)
+        retry_transient(lambda: api.kernels_output(kernel, str(artifacts), file_pattern=pattern,
+                                                   force=True, page_size=100),
+                        f"retrieve {stage} artifacts", controller)
         record_controller_status(controller, dict(stage=stage, status="COMPLETE", kernel=kernel,
                                                   updated_at=time.time()))
         print("Completed and retrieved", stage, flush=True)
