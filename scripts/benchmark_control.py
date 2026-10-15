@@ -61,24 +61,23 @@ sys.path.insert(0, str(root))
 from alignment.judge import run_judge, summarize
 @kbench.task(name={task!r})
 def evaluate_saved_pairs(llm):
-    judge = kbench.llms['google/gemini-3.6-flash']
     def call(prompt):
         with kbench.chats.new('independent_pair_batch'):
-            return judge.prompt(prompt)
+            return llm.prompt(prompt)
     for track in ['hh', 'uf', 'persona']:
         pairs = root / 'pairs' / f'pairs_{{track}}.jsonl'
         output = root / 'judgments' / f'judged_{{track}}.jsonl'
-        run_judge(pairs, output, call, 'google/gemini-3.6-flash')
+        run_judge(pairs, output, call, 'benchmark_selected_model')
         summary = summarize(pairs, output, output.with_suffix('.summary.json'))
         print('SUMMARY', track, summary)
-evaluate_saved_pairs.run(kbench.llms['google/gemini-3.6-flash'])
+evaluate_saved_pairs.run(kbench.llm)
 '''
     path = folder / "task.py"
     path.write_text(source, encoding="utf-8")
     return path
 
 
-def recover_judgments(download, generations, output, task):
+def recover_judgments(download, generations, output, task, previous=None):
     """Recover saved judge answers from Benchmark run conversations.
 
     The Benchmark download endpoint exports conversations and assertions, but
@@ -103,6 +102,12 @@ def recover_judgments(download, generations, output, task):
                 raise ValueError(f"Duplicate pair ID across tracks: {pair['id']}")
             expected[pair["id"]] = track
     recovered, requests_seen, invalid = {}, {}, []
+    if previous:
+        for track in ("hh", "uf", "persona"):
+            for row in read_jsonl(Path(previous) / f"judged_{track}.jsonl"):
+                if row["id"] not in expected or expected[row["id"]] != track:
+                    raise ValueError("Previous judgments contain an unexpected pair ID")
+                recovered[row["id"]] = row
     for conversation in run.get("conversations", []):
         for request in conversation.get("requests", []):
             contents = request.get("contents", [])
@@ -164,7 +169,7 @@ def main():
     if args.action == "recover":
         if not args.generations:
             p.error("recover requires --generations")
-        print(recover_judgments(args.download, args.generations, args.output, args.task))
+        print(recover_judgments(args.download, args.generations, args.output, args.task, args.previous))
         return
     api = api_client()
     if args.action == "push":

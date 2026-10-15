@@ -39,6 +39,12 @@ For DPO add `--sft-checkpoint SFT_BEST`. The LoRA command is `python -m alignmen
 
 Attach data and all four training notebooks when pushing `--stage generate`. Generations are greedy and append immediately to JSONL; settings and input hashes protect resumption. Qwen uses an explicit instruction/response template, while SmolLM2 uses its native chat template. Inspect five samples per model before accepting the full evaluation. Pair files exclude model identities; separate `.identity.json` files hold the mapping.
 
+The executed evaluation uses left-padded batches of four with a 256-new-token cap. The saved five-prompt sanity version tests this exact decoding path before the full 300/300/40-prompt run. For the separate `hanzlasajjad2026` account, the stage controller can resume from the saved outputs without touching other notebooks:
+
+```powershell
+python -X utf8 scripts/run_assignment.py --owner hanzlasajjad2026 --start generate
+```
+
 ```powershell
 python -X utf8 scripts/benchmark_control.py push
 python -X utf8 scripts/benchmark_control.py status
@@ -49,7 +55,7 @@ python -X utf8 scripts/benchmark_control.py download --task small-alignment-judg
 python -X utf8 scripts/benchmark_control.py recover --task small-alignment-judging --download artifacts/benchmark --generations artifacts/experiment/results/generations --output artifacts/experiment/results/judgments
 ```
 
-The first three commands validate judge access. Benchmark tasks stay private unless explicitly published. Full judging only reads saved pairs. Kaggle Benchmark downloads export saved conversations rather than files written by the task, so `recover` reconstructs judgment JSONL files from those conversations and audits missing or invalid responses. To resume a task, pass the recovered judgment directory with `--previous`. Main comparisons each contain 300 pairs; persona contains 40. Unknowns and failures are not counted as wins. The report distinguishes decisive and tie-adjusted rates and does not claim official length-controlled AlpacaEval scores.
+The first three commands validate judge access. Wait for task status `Completed` before submitting the Gemini 3.6 Flash run. Benchmark tasks stay private unless explicitly published. Full judging only reads saved pairs. Kaggle Benchmark downloads export saved conversations rather than files written by the task, so `recover` reconstructs judgment JSONL files from those conversations and audits missing or invalid responses. To resume a task, pass the recovered judgment directory with `--previous` to both `push` and `recover`. Main comparisons each contain 300 pairs; persona contains 40. Unknowns and failures are not counted as wins. The report distinguishes decisive and tie-adjusted rates and does not claim official length-controlled AlpacaEval scores.
 
 Download each completed notebook's results to a common artifact root:
 
@@ -66,6 +72,12 @@ python -X utf8 scripts/build_report.py --results artifacts/experiment/results --
 ```
 
 The builder creates vector figures and LaTeX tables from saved metrics and judgments, then compiles with `latexmk`/PDFLaTeX/BibTeX. It rejects missing experiments and PDFs over eight pages. `--draft` explicitly permits incomplete evidence and produces `report/draft_report.pdf`; it never substitutes for a final report. The deliverable is `report/final_report.pdf` plus `main.tex`, bibliography, generated inputs, and figures.
+
+After judging, archive the compact evidence into the private repository. This copies configurations, selected evaluation prompts, metrics, generation and pair files, identity mappings, and judgments; model weights and large training-set copies stay in the private Kaggle notebook outputs.
+
+```powershell
+python -X utf8 scripts/archive_evidence.py --source artifacts/experiment/results --destination evidence
+```
 
 ## References and authorship
 

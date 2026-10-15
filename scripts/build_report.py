@@ -48,6 +48,8 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
         summaries[track] = summarize(pair_path, judgment_path, generated / f"{track}_summary.json")
         if summaries[track]["total"] != (40 if track == "persona" else 300):
             missing.append(f"Full {track} evaluation subset")
+        if summaries[track]["denominators"]["valid_including_ties"] == 0:
+            missing.append(f"At least one valid {track} judge comparison")
     if not repository:
         missing.append("GitHub repository URL")
     if not (results / "prepared" / "manifest.json").exists():
@@ -95,7 +97,7 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
                      f"{c['batch_size']*c['accumulation']}; {c['epochs']} ep., {steps} logged steps")
         configuration.append(f"{track.upper()} & {strategy} & {optimization} & {batch_run} & {reference}" + r"\\")
     configuration += [r"\bottomrule\end{tabularx}\caption{Executed settings; batch is per device $\times$ accumulation = effective global batch. Logged steps count accumulation windows, including skipped updates. All tracks: seed 42, 512 tokens, FP32 trainable weights with FP16 autocast (GradScaler for full tuning), Kaggle T4 hardware.}\end{table}"]
-    configuration.append(r"Evaluation uses greedy decoding in batches of four, with 256 maximum new tokens, repetition and length penalties of 1.0, and no active temperature or top-$p$ sampling. Qwen uses the instruction/response template below; SmolLM2 uses its native chat template. The main DPO reference is exactly the selected SFT-best checkpoint, not the final checkpoint; the persona reference is the original instruction model with adapters disabled.")
+    configuration.append(r"Evaluation uses greedy decoding in batches of four, with 256 maximum new tokens, repetition and length penalties of 1.0, and no active temperature or top-$p$ sampling. Qwen uses the instruction/response template below; SmolLM2 uses its native chat template. Both main DPO references resolve to \path{/kaggle/input/notebooks/hanzlasajjad2026/small-alignment-sft/results/sft/best}; the persona reference is the original SmolLM2 instruction checkpoint (manifest revision) with adapters disabled.")
     emit("configuration", "\n".join(configuration))
     emit("deviations", "The reference learning rates, data sizes, effective batch sizes, beta and training lengths are retained for the main experiments. Prompts longer than 256 tokens are filtered in SFT as well as DPO to preserve response supervision. AlpacaEval is read from its revision-pinned JSON file, avoiding its custom loader. The environment preserves Kaggle's CUDA-compatible PyTorch; optional torchao and torchvision installations are removed to avoid incompatible optional imports. Generation batches four left-padded prompts to reduce evaluation time; decoding parameters stay identical within each comparison. These are resource and compatibility choices, not measured performance improvements.")
     training, figure_tex = [], []
@@ -181,13 +183,28 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
                             f"the candidate's tie-adjusted rate was {100*rate:.1f}\\%, {100*(rate-.5):+.1f} percentage points "
                             f"relative to parity, with {c['win']-c['loss']:+d} net decisive wins. "
                             "This is a measured association on fixed prompts, not a causal estimate of the preference dataset's effect.")
+            category_rates = []
+            for category, counts in s["categories"].items():
+                valid = sum(counts.get(key, 0) for key in ("win", "loss", "tie"))
+                if valid:
+                    category_rates.append((float(counts.get("win", 0) + counts.get("tie", 0) / 2) / valid,
+                                           category, valid))
+            if len(category_rates) > 1:
+                low, high = min(category_rates), max(category_rates)
+                analysis.append(f"Within {track.upper()}, the lowest observed category was {tex(low[1])} "
+                                f"({100*low[0]:.1f}\\%, {low[2]} valid), and the highest was {tex(high[1])} "
+                                f"({100*high[0]:.1f}\\%, {high[2]} valid). These small category slices are descriptive.")
         if track == "persona":
             for dimension, counts in s["persona_dimensions"].items():
                 total = sum(counts.values())
+                valid = sum(counts.get(name, 0) for name in ("win", "loss", "tie"))
+                adjusted = ((counts.get("win", 0) + counts.get("tie", 0) / 2) / valid
+                            if valid else None)
                 table.append("Persona " + tex(dimension.replace("_winner", "")) + ": " +
                              f"{counts.get('win',0)} wins, {counts.get('loss',0)} losses, "
                              f"{counts.get('tie',0)} ties, {counts.get('unknown',0)} unknown "
-                             f"({total} valid dimension labels).")
+                             f"({total} dimension labels); tie-adjusted " +
+                             (f"{adjusted:.3f} ({valid} valid)." if adjusted is not None else "undefined."))
         pairs = read_jsonl(results / "generations" / f"pairs_{track}.jsonl")
         mapping = read_json(results / "generations" / f"pairs_{track}.identity.json")
         judgments = {r["id"]: r for r in read_jsonl(results / "judgments" / f"judged_{track}.jsonl")}
@@ -198,8 +215,14 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
                 if winner not in {"A", "B"}: continue
                 won = mapping[pair["id"]][winner] == mapping[pair["id"]]["candidate"]
                 if won != (wanted == "win"): continue
+                candidate_side = "A" if mapping[pair["id"]]["A"] == mapping[pair["id"]]["candidate"] else "B"
+                baseline_side = "B" if candidate_side == "A" else "A"
+                candidate_text = pair[f"response_{candidate_side.lower()}"]
+                baseline_text = pair[f"response_{baseline_side.lower()}"]
                 examples.append(r"\textbf{" + tex(f"{track.upper()} representative {wanted}, prompt {pair['prompt_id']}") + "}: " +
-                                tex(pair["instruction"][:150]) + " Judge rationale: " + tex(j.get("reason", "")[:220]) + ".")
+                                tex(pair["instruction"][:110]) + " Baseline: ``" + tex(baseline_text[:110]) +
+                                "'' Candidate: ``" + tex(candidate_text[:110]) + "'' Judge: " +
+                                tex(j.get("reason", "")[:140]) + ".")
                 break
     emit("results", "\n".join(table))
     emit("analysis", "\n".join(analysis) or "Interpretation is pending measured comparisons. No improvement is assumed.")
