@@ -7,6 +7,21 @@ import zipfile
 from kaggle_control import api_client, ROOT
 
 
+def allow_kaggle_validating_state():
+    """Handle a server state not yet present in the current Kaggle SDK enum."""
+    from kagglesdk.kaggle_object import EnumSerializer
+    from kagglesdk.benchmarks.types.benchmark_enums import BenchmarkTaskVersionCreationState
+    original = EnumSerializer._from_str
+
+    def parse(cls, value):
+        if (cls is BenchmarkTaskVersionCreationState and
+                value == "BENCHMARK_TASK_VERSION_CREATION_STATE_VALIDATING"):
+            return cls.BENCHMARK_TASK_VERSION_CREATION_STATE_QUEUED
+        return original(cls, value)
+
+    EnumSerializer._from_str = staticmethod(parse)
+
+
 def prepare(task, generations=None, previous=None):
     folder = ROOT / ".kaggle-build" / task
     folder.mkdir(parents=True, exist_ok=True)
@@ -61,6 +76,7 @@ evaluate_saved_pairs.run(kbench.llms['google/gemini-3.6-flash'])
 
 
 def main():
+    allow_kaggle_validating_state()
     p = argparse.ArgumentParser()
     p.add_argument("action", choices=["push", "run", "status", "download", "logs"])
     p.add_argument("--task", default="small-alignment-judge-smoke")
