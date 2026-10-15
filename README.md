@@ -65,6 +65,8 @@ python -X utf8 scripts/kaggle_control.py download --kernel OWNER/small-alignment
 
 This retrieves `results/` and the notebook log without duplicating source files. Add `--pattern` to retrieve only metadata while keeping large checkpoints in saved private notebook outputs.
 
+The saved private notebook slugs for this run are `hanzlasajjad2026/small-alignment-data`, `small-alignment-sft`, `small-alignment-hh`, `small-alignment-uf`, `small-alignment-persona`, `small-alignment-generation-sanity`, and `small-alignment-generate` under the same owner. The judge tasks are `small-alignment-judge-sanity` and `small-alignment-judging`.
+
 ## LaTeX report
 
 ```powershell

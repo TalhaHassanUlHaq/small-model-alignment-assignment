@@ -25,6 +25,7 @@ def archive(source, destination):
                          source / "judgments" / f"judged_{track}.summary.json"))
     required.extend(source.glob("generations/*.jsonl"))
     required.extend(source.glob("generations/*.manifest.json"))
+    required.extend(source.glob("judgments/*.jsonl"))
     required.extend(source.glob("judgments/*.json"))
     missing = [str(path) for path in required if not path.is_file()]
     if missing:

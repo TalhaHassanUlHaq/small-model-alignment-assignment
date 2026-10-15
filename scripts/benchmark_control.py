@@ -148,10 +148,15 @@ def recover_judgments(download, generations, output, task, previous=None):
     for track in ("hh", "uf", "persona"):
         pairs = generations / f"pairs_{track}.jsonl"
         judgments = output / f"judged_{track}.jsonl"
+        failures = output / f"judged_{track}.failures.jsonl"
         judgments.write_text("", encoding="utf-8")
+        failures.write_text("", encoding="utf-8")
         for pair in read_jsonl(pairs):
             if pair["id"] in recovered:
                 append_jsonl(judgments, recovered[pair["id"]])
+            else:
+                append_jsonl(failures, dict(id=pair["id"], attempts=requests_seen.get(pair["id"], 0),
+                                            error="no_valid_saved_judgment"))
         summaries[track] = summarize(pairs, judgments, output / f"judged_{track}.summary.json")
     return summaries
 

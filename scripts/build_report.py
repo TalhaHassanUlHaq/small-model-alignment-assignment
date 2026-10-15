@@ -39,6 +39,29 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
         runs[track] = dict(config=read_json(folder / "config.json"), status=read_json(folder / "run_status.json"),
                            metrics=read_jsonl(folder / "metrics.jsonl"))
     summaries = {}
+    expected_generations = {name: 300 for name in
+                            ("alpaca_base", "alpaca_sft", "alpaca_uf",
+                             "hh_base", "hh_sft", "hh_hh")}
+    expected_generations.update(persona_base=40, persona_lora=40)
+    generation_settings = []
+    for name, expected_count in expected_generations.items():
+        response_path = results / "generations" / f"{name}.jsonl"
+        manifest_path = results / "generations" / f"{name}.manifest.json"
+        if not response_path.exists() or not manifest_path.exists():
+            missing.append(f"Saved {name} generations and settings")
+            continue
+        responses = read_jsonl(response_path)
+        manifest = read_json(manifest_path)
+        if len(responses) != expected_count or manifest.get("expected_count") != expected_count:
+            missing.append(f"Complete {name} generation count")
+        if len({row["id"] for row in responses}) != len(responses):
+            missing.append(f"Unique {name} generation IDs")
+        generation_settings.append(manifest["settings"])
+    if generation_settings and (any(setting != generation_settings[0] for setting in generation_settings) or
+                                generation_settings[0].get("max_new_tokens") != 256 or
+                                generation_settings[0].get("batch_size") != 4 or
+                                generation_settings[0].get("do_sample") is not False):
+        missing.append("Consistent executed generation settings")
     for track in ["hh", "uf", "persona"]:
         pair_path = results / "generations" / f"pairs_{track}.jsonl"
         judgment_path = results / "judgments" / f"judged_{track}.jsonl"
@@ -228,7 +251,7 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
     emit("analysis", "\n".join(analysis) or "Interpretation is pending measured comparisons. No improvement is assumed.")
     emit("examples", "\n".join(examples))
     emit("limitations", "Missing evidence: " + tex("; ".join(missing)) + "." if missing else "All required experiment and evaluation artifacts were available when this report was built.")
-    emit("artifacts", r"Reproduction: run \texttt{python -m pytest -q tests}; execute the staged Kaggle commands in the README; then run \texttt{python scripts/build\_report.py --results <results> --repository <URL>}. Configuration, data manifests, per-step metrics, checkpoint metadata, generations, and judgments accompany this report.")
+    emit("artifacts", r"Reproduction commands for tests, staged Kaggle jobs, and rebuilding the PDF are in the README. The repository archives \path{evidence/prepared/manifest.json}, configuration and metrics under \path{evidence/sft/}, \path{evidence/hh/}, \path{evidence/uf/}, and \path{evidence/persona/}, responses and blinded pairs under \path{evidence/generations/}, and decisions under \path{evidence/judgments/}. Best and final model weights remain in the private saved Kaggle notebook outputs named in the README.")
     if compile_pdf:
         name = "draft_report" if draft else "final_report"
         subprocess.run(["latexmk", "-pdf", "-interaction=nonstopmode", "-halt-on-error", f"-jobname={name}", "main.tex"], cwd=report, check=True)

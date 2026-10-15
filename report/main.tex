@@ -28,6 +28,7 @@ decoding, and anonymous pairwise judging. \input{generated/abstract.tex}
 
 \section{Repository, models, and data}
 \input{generated/provenance.tex}
+The model and dataset identities follow their published cards~\cite{qwen,smol,ultrachat,ultrafeedback}.
 The SFT loader extracts the first user--assistant exchange from UltraChat.
 Preference loaders retain single-turn pairs with matching prompts and distinct
 chosen and rejected responses. Empty, malformed, duplicated, and overlapping
@@ -81,6 +82,12 @@ not the Qwen SFT model. TRL and PEFT are used only for this track~\cite{trl,peft
 \section{Training behavior}
 \input{generated/training.tex}
 \input{generated/figures.tex}
+HH validation reward accuracy fluctuated (0.617 at step 200, 0.592 at step
+300) before its final maximum of 0.619. UltraFeedback rose from 0.665 at
+step 100 to 0.697 at the final step. Persona reward accuracy was already
+1.000 at its first 12-step evaluation on only 22 pairs; its growing margin
+therefore provides more resolution than accuracy, but neither metric
+establishes style, usefulness, or safety on new prompts.
 Training losses diagnose optimization and do not establish response quality.
 Validation metrics determine checkpoint selection; the held-out pairwise
 comparisons below assess the generated responses.

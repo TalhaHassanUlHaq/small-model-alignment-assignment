@@ -40,3 +40,14 @@ def test_recover_saved_conversations_and_retry_counts(tmp_path):
     summaries = recover_judgments(download, generations, output, "judge")
     assert all(summaries[track]["counts"]["win"] == 1 for track in rows)
     assert read_jsonl(output / "judged_hh.jsonl")[0]["attempts"] == 2
+    assert read_jsonl(output / "judged_persona.failures.jsonl") == []
+
+    # A missing saved answer is an explicit failure, never a candidate win.
+    requests[-1]["contents"] = requests[-1]["contents"][:1]
+    write_json(download / "judge.run.json", dict(modelVersion=dict(slug="google/gemini-3.6-flash"),
+                                                   state="BENCHMARK_TASK_RUN_STATE_COMPLETED",
+                                                   endTime="2026-10-15T12:00:00Z",
+                                                   conversations=[dict(requests=requests)]))
+    summaries = recover_judgments(download, generations, output, "judge")
+    assert summaries["persona"]["counts"]["failure"] == 1
+    assert read_jsonl(output / "judged_persona.failures.jsonl")[0]["id"] == "pair-persona"
