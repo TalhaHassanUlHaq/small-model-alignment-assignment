@@ -84,8 +84,12 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
     emit("metadata", "\n".join([r"\newcommand{\ReportAuthor}{" + tex(author) + "}",
                                 r"\newcommand{\ReportDate}{" + str(date.today()) + "}",
                                 r"\newcommand{\ReportStatus}{" + (r"\textbf{DRAFT: experiments or submission evidence remain incomplete.}" if draft else "") + "}"]))
-    emit("abstract", " ".join(f"{track.upper()} achieves {s['counts']['win']} wins, {s['counts']['loss']} losses, and {s['counts']['tie']} ties."
-                                for track, s in summaries.items()) or "Full-run results are not yet available; no model-quality conclusion is claimed.")
+    emit("abstract", " ".join(
+        f"{track.upper()} records {s['counts']['win']} wins, {s['counts']['loss']} losses, "
+        f"and {s['counts']['tie']} ties (tie-adjusted rate "
+        f"{s['tie_adjusted_win_rate']:.3f})."
+        for track, s in summaries.items() if s['tie_adjusted_win_rate'] is not None
+    ) or "Full-run results are not yet available; no model-quality conclusion is claimed.")
     provenance = [r"Repository: \url{" + repository + "}." if repository else "Repository publication is pending authentication.",
                   r"Base models: \texttt{Qwen2.5-0.5B} and \texttt{SmolLM2-360M-Instruct} (HuggingFaceTB)."]
     if (results / "prepared" / "manifest.json").exists():
@@ -94,7 +98,7 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
             provenance.append(f"{track.upper()}: {splits['train']['count']:,} training and {splits['val']['count']:,} validation examples.")
         provenance.append(f"Persona: {manifest['persona']['train']} training and {manifest['persona']['val']} validation examples.")
         provenance.append("Fixed evaluation sets: 300 AlpacaEval prompts, 300 supplied HH prompts, and 40 supplied persona prompts.")
-        provenance.append("Exact source revisions and hashes are included in the accompanying manifest.")
+        provenance.append("Filtering was substantial for HH: 34,723 of 49,903 scanned training rows were invalid for the required single-turn, shared-prompt pair format; 108 were duplicates or overlaps and 72 were unscorable. Exact source revisions, split names, row indices, and hashes are archived in the accompanying manifest and selected-example index.")
     else:
         provenance.append("The intended counts are 30,000/1,000 for SFT and 15,000/1,000 for each main DPO track; these are not completed-run claims.")
     emit("provenance", "\n".join(provenance))
@@ -122,7 +126,7 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
     configuration += [r"\bottomrule\end{tabularx}\caption{Executed settings; batch is per device $\times$ accumulation = effective global batch. Logged steps count accumulation windows, including skipped updates. All tracks: seed 42, 512 tokens, FP32 trainable weights with FP16 autocast (GradScaler for full tuning), Kaggle T4 hardware.}\end{table}"]
     configuration.append(r"Evaluation uses greedy decoding in batches of four, with 256 maximum new tokens, repetition and length penalties of 1.0, and no active temperature or top-$p$ sampling. Qwen uses the instruction/response template below; SmolLM2 uses its native chat template. Both main DPO references resolve to \path{/kaggle/input/notebooks/hanzlasajjad2026/small-alignment-sft/results/sft/best}; the persona reference is the original SmolLM2 instruction checkpoint (manifest revision) with adapters disabled.")
     emit("configuration", "\n".join(configuration))
-    emit("deviations", "The reference learning rates, data sizes, effective batch sizes, beta and training lengths are retained for the main experiments. Prompts longer than 256 tokens are filtered in SFT as well as DPO to preserve response supervision. AlpacaEval is read from its revision-pinned JSON file, avoiding its custom loader. The environment preserves Kaggle's CUDA-compatible PyTorch; optional torchao and torchvision installations are removed to avoid incompatible optional imports. Generation batches four left-padded prompts to reduce evaluation time; decoding parameters stay identical within each comparison. These are resource and compatibility choices, not measured performance improvements.")
+    emit("deviations", "The guide's main learning rates, data sizes, effective batch sizes, beta, and training lengths were retained. A stricter 256-token prompt filter was applied to SFT as well as DPO, preserving response supervision within the 512-token context; it changed which examples were eligible, not the target counts. The revision-pinned AlpacaEval JSON replaced its custom dataset loader after a compatibility problem; Kaggle's CUDA-compatible PyTorch stack was preserved, and incompatible optional torchao and torchvision imports were removed. Evaluation changed from serial decoding to left-padded batches of four, with identical greedy settings across compared models. On the five-prompt sanity evaluation for all eight output groups, batching reduced recorded execution time from about 629 to 241 seconds; this is a throughput observation, not evidence of improved model quality. No beta or learning-rate tuning was attempted.")
     training, figure_tex = [], []
     fig, axes = plt.subplots(2, 2, figsize=(10, 5.8), constrained_layout=True)
     plotted = False
@@ -251,7 +255,7 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
     emit("analysis", "\n".join(analysis) or "Interpretation is pending measured comparisons. No improvement is assumed.")
     emit("examples", "\n".join(examples))
     emit("limitations", "Missing evidence: " + tex("; ".join(missing)) + "." if missing else "All required experiment and evaluation artifacts were available when this report was built.")
-    emit("artifacts", r"Reproduction commands for tests, staged Kaggle jobs, and rebuilding the PDF are in the README. The repository archives \path{evidence/prepared/manifest.json}, configuration and metrics under \path{evidence/sft/}, \path{evidence/hh/}, \path{evidence/uf/}, and \path{evidence/persona/}, responses and blinded pairs under \path{evidence/generations/}, and decisions under \path{evidence/judgments/}. Best and final model weights remain in the private saved Kaggle notebook outputs named in the README.")
+    emit("artifacts", r"Reproduction commands for tests, staged Kaggle jobs, and rebuilding the PDF are in the README. The repository archives \path{evidence/prepared/manifest.json} and \path{evidence/prepared/selected_examples_index.json}, configuration and metrics under \path{evidence/sft/}, \path{evidence/hh/}, \path{evidence/uf/}, and \path{evidence/persona/}, responses and blinded pairs under \path{evidence/generations/}, and decisions under \path{evidence/judgments/}. Best and final model weights remain in the private saved Kaggle notebook outputs named in the README.")
     if compile_pdf:
         name = "draft_report" if draft else "final_report"
         subprocess.run(["latexmk", "-pdf", "-interaction=nonstopmode", "-halt-on-error", f"-jobname={name}", "main.tex"], cwd=report, check=True)

@@ -70,12 +70,12 @@ The saved private notebook slugs for this run are `hanzlasajjad2026/small-alignm
 ## LaTeX report
 
 ```powershell
-python -X utf8 scripts/build_report.py --results artifacts/experiment/results --repository https://github.com/OWNER/REPO --author "Your name"
+python -X utf8 scripts/build_report.py --results artifacts/experiment/results --repository https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment --author "Student ID: 27100306"
 ```
 
 The builder creates vector figures and LaTeX tables from saved metrics and judgments, then compiles with `latexmk`/PDFLaTeX/BibTeX. It rejects missing experiments and PDFs over eight pages. `--draft` explicitly permits incomplete evidence and produces `report/draft_report.pdf`; it never substitutes for a final report. The deliverable is `report/final_report.pdf` plus `main.tex`, bibliography, generated inputs, and figures.
 
-After judging, archive the compact evidence into the private repository. This copies configurations, selected evaluation prompts, metrics, generation and pair files, identity mappings, and judgments; model weights and large training-set copies stay in the private Kaggle notebook outputs.
+After judging, archive the compact evidence into the private repository. This copies configurations, selected evaluation prompts, the training/validation row-ID index, the small persona dataset, metrics, generation and pair files, identity mappings, and judgments; model weights and large main training-set copies stay in the private Kaggle notebook outputs.
 
 ```powershell
 python -X utf8 scripts/archive_evidence.py --source artifacts/experiment/results --destination evidence

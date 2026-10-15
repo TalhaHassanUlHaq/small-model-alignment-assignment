@@ -4,6 +4,7 @@ __pycache__/
 !.env.example
 .venv/
 .pytest_cache/
+.tmp/
 outputs/
 artifacts/
 .kaggle-build/
@@ -15,7 +16,5 @@ artifacts/
 *.synctex.gz
 *.bbl
 *.blg
-report/generated/
-report/figures/
 report/draft_report.*
 report/draft-preview-*.png

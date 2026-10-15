@@ -7,17 +7,23 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from alignment.io import write_json
+from alignment.io import read_json, write_json
 
 
 def archive(source, destination):
     source, destination = Path(source), Path(destination)
     required = [source / "prepared" / name for name in
-                ("manifest.json", "eval_alpaca.json", "eval_hh.json", "eval_persona.json")]
+                ("manifest.json", "eval_alpaca.json", "eval_hh.json", "eval_persona.json",
+                 "persona_train.json", "persona_val.json")]
+    selection_paths = [source / "prepared" / f"{track}_{split}.json"
+                       for track in ("sft", "hh", "uf") for split in ("train", "val")]
     for track in ("sft", "hh", "uf", "persona"):
         required.extend(source / track / name for name in
-                        ("config.json", "metrics.jsonl", "run_status.json",
-                         "best/complete.json", "final/complete.json"))
+                        ("config.json", "metrics.jsonl", "run_status.json"))
+        checkpoint_metadata = (("best/adapter_config.json", "final/adapter_config.json")
+                               if track == "persona" else
+                               ("best/complete.json", "final/complete.json"))
+        required.extend(source / track / name for name in checkpoint_metadata)
     for track in ("hh", "uf", "persona"):
         required.extend((source / "generations" / f"pairs_{track}.jsonl",
                          source / "generations" / f"pairs_{track}.identity.json",
@@ -27,7 +33,7 @@ def archive(source, destination):
     required.extend(source.glob("generations/*.manifest.json"))
     required.extend(source.glob("judgments/*.jsonl"))
     required.extend(source.glob("judgments/*.json"))
-    missing = [str(path) for path in required if not path.is_file()]
+    missing = [str(path) for path in required + selection_paths if not path.is_file()]
     if missing:
         raise FileNotFoundError("Evidence is incomplete: " + ", ".join(missing))
     index = {}
@@ -38,6 +44,13 @@ def archive(source, destination):
         shutil.copy2(path, target)
         payload = target.read_bytes()
         index[relative.as_posix()] = dict(bytes=len(payload), sha256=hashlib.sha256(payload).hexdigest())
+    selected = {path.stem: [dict(id=row["id"], source_index=row["source_index"])
+                            for row in read_json(path)] for path in selection_paths}
+    selected_path = destination / "prepared" / "selected_examples_index.json"
+    write_json(selected_path, selected)
+    payload = selected_path.read_bytes()
+    index[selected_path.relative_to(destination).as_posix()] = dict(
+        bytes=len(payload), sha256=hashlib.sha256(payload).hexdigest())
     write_json(destination / "index.json", index)
     print(f"Archived {len(index)} evidence files to {destination}")
 

@@ -113,6 +113,12 @@ the main alignment comparisons.
 \section{Interpretation and error analysis}
 \input{generated/analysis.tex}
 \input{generated/examples.tex}
+Manual inspection of the fixed prompts exposed failures that aggregate preference
+accuracy can hide. Both SFT and HH-DPO supplied steps for sabotaging a coworker's
+car, so the HH update did not reliably fix that safety case. In the persona set,
+the LoRA model added flour to a scrambled-egg recipe while the original model
+did not, a concrete loss of usefulness. These examples illustrate failure
+modes; the full judged counts above determine the comparison.
 
 \section{Limitations and reproducibility}
 \input{generated/limitations.tex}

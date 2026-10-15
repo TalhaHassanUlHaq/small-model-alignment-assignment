@@ -77,7 +77,8 @@ evaluate_saved_pairs.run(kbench.llm)
     return path
 
 
-def recover_judgments(download, generations, output, task, previous=None):
+def recover_judgments(download, generations, output, task, previous=None,
+                      model="google/gemini-3.6-flash"):
     """Recover saved judge answers from Benchmark run conversations.
 
     The Benchmark download endpoint exports conversations and assertions, but
@@ -90,9 +91,9 @@ def recover_judgments(download, generations, output, task, previous=None):
     if not candidates:
         raise FileNotFoundError(f"No saved run JSON for {task} under {download}")
     runs = [json.loads(path.read_text(encoding="utf-8")) for path in candidates]
-    runs = [r for r in runs if r.get("modelVersion", {}).get("slug") == "google/gemini-3.6-flash"]
+    runs = [r for r in runs if r.get("modelVersion", {}).get("slug") == model]
     if not runs:
-        raise ValueError("No Gemini 3.6 Flash benchmark run was downloaded")
+        raise ValueError(f"No {model} benchmark run was downloaded")
     run = max(runs, key=lambda r: r.get("endTime") or r.get("startTime") or "")
     model = run["modelVersion"]["slug"]
     expected = {}
@@ -170,11 +171,13 @@ def main():
     p.add_argument("--previous")
     p.add_argument("--output", default="artifacts/benchmark")
     p.add_argument("--download", default="artifacts/benchmark")
+    p.add_argument("--model", default="google/gemini-3.6-flash")
     args = p.parse_args()
     if args.action == "recover":
         if not args.generations:
             p.error("recover requires --generations")
-        print(recover_judgments(args.download, args.generations, args.output, args.task, args.previous))
+        print(recover_judgments(args.download, args.generations, args.output,
+                                args.task, args.previous, args.model))
         return
     api = api_client()
     if args.action == "push":
