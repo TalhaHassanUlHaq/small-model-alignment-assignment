@@ -17,6 +17,14 @@ def status_name(response):
     return str(response.status).split(".")[-1].upper()
 
 
+def record_controller_status(path, value):
+    """Keep monitoring when Windows briefly locks this advisory status file."""
+    try:
+        write_json(path, value)
+    except PermissionError:
+        print("Controller status file is temporarily locked; continuing Kaggle work", flush=True)
+
+
 def retry_transient(operation, label, controller=None):
     """Retry only transport failures without treating a Kaggle job as failed."""
     attempts = 0
@@ -27,8 +35,8 @@ def retry_transient(operation, label, controller=None):
             attempts += 1
             delay = min(60, 5 * 2 ** min(attempts - 1, 4))
             if controller is not None:
-                write_json(controller, dict(status="WAITING_FOR_NETWORK", operation=label,
-                                            retry=attempts, updated_at=time.time()))
+                record_controller_status(controller, dict(status="WAITING_FOR_NETWORK", operation=label,
+                                                          retry=attempts, updated_at=time.time()))
             print(f"Temporary network failure during {label}; retrying in {delay}s", flush=True)
             time.sleep(delay)
 
@@ -93,7 +101,8 @@ def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
                 time.sleep(60)
             status = "RUNNING"
         while status not in {"COMPLETE", "ERROR", "CANCELLED", "CANCELED"}:
-            write_json(controller, dict(stage=stage, status=status, kernel=kernel, updated_at=time.time()))
+            record_controller_status(controller, dict(stage=stage, status=status, kernel=kernel,
+                                                      updated_at=time.time()))
             print(stage, status, flush=True)
             time.sleep(60)
             status = status_name(retry_transient(lambda: api.kernels_status(kernel),
@@ -104,7 +113,8 @@ def run(repository, owner="talhahassanulhaq", start="sft", stop_after=None):
         # Preserve large weights remotely; download all evidence needed for analysis/report.
         pattern = r"^results/.*\.(json|jsonl)$"
         api.kernels_output(kernel, str(artifacts), file_pattern=pattern, force=True, page_size=100)
-        write_json(controller, dict(stage=stage, status="COMPLETE", kernel=kernel, updated_at=time.time()))
+        record_controller_status(controller, dict(stage=stage, status="COMPLETE", kernel=kernel,
+                                                  updated_at=time.time()))
         print("Completed and retrieved", stage, flush=True)
         if stage == "generation_sanity":
             # A manual sample inspection is explicitly required by the assignment.
@@ -125,6 +135,8 @@ if __name__ == "__main__":
     try:
         run(args.repository, args.owner, args.start, args.stop_after)
     except Exception as error:
-        write_json(ROOT / "artifacts" / "controller.json", dict(status="BLOCKED", error_type=type(error).__name__,
-                   message=str(error) if isinstance(error, (RuntimeError, ValueError)) else "External API request failed"))
+        record_controller_status(ROOT / "artifacts" / "controller.json",
+                                 dict(status="BLOCKED", error_type=type(error).__name__,
+                                      message=str(error) if isinstance(error, (RuntimeError, ValueError))
+                                      else "External API request failed"))
         raise
