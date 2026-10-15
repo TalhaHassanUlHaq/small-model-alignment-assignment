@@ -1,0 +1,13 @@
+{
+  "signature": "e1f1f1d8829f29473b40665a9683fab073a4d0de4dac5245337e290291ff92db",
+  "model": "Qwen/Qwen2.5-0.5B",
+  "revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+  "adapter": "None",
+  "settings": {
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "repetition_penalty": 1.0,
+    "batch_size": 4
+  },
+  "expected_count": 300
+}

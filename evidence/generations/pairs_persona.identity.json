@@ -1,0 +1,242 @@
+{
+  "5c0214ef3be8139b43f1f616": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "a5dc5785bb0a704b5832e682": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "9d5d2bc3df4b6497a1c00f11": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "90e9eeaa999d2036344b38b2": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "c17d38c2c74645225181f9df": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "9cabb814b940e154bd9e1ba7": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "5694358d51a0d0d3279db30d": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "89f88e6014fd3fa27f50d1e7": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "0363b9944dc3ca514634de23": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "c063cb5b803e34853cc11bed": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "0dd86adb319454f41762ab0b": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "0194c64a490f4d610b3f6f14": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "0b3305a433498c4ebc0d6956": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "6a80729983f926e0977ec6b5": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "8e6582a5398ae3b237606334": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "b3e44be46607f28ffd72eb7d": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "96835b656e391e85c5f58001": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "9b82cd6df1d8c8e440c1628b": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "544c72003b1f9854cae3b72b": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "e5ad93d2f23bc39b95a8acd6": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "c61a394d22987bb279e8c2a9": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "4a80d9f8f8834fdc5be50116": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "5a38725f40168bdbda9fd137": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "8c7dcf13be38d175b21a4246": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "288d4482e3f20059d7a89266": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "865e9d595ed8f6559ae30821": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "b79351337307d574f920dd2e": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "ec143024cb7364dbcbd8501f": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "6717b95ca866f22baaeb02c9": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "1c18cfc2ef97514022cf1e4e": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "5068e9d838ee683b35caab04": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "4beae7571779b27290adf5cf": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "007522ddd9efe283ffe30a44": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "99748bad68d13a7f52f72bbe": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "c9d99f3f3a1c0d0f08bca719": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "252c124ed7193124c0d39f3f": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "049971961f674b18f613beca": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "61afb73f062c66c1bfa2a8b4": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "dc96795242754e4eeb620572": {
+    "A": "persona_lora",
+    "B": "persona_base",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  },
+  "57afda8f4d3045603f247c75": {
+    "A": "persona_base",
+    "B": "persona_lora",
+    "baseline": "persona_base",
+    "candidate": "persona_lora"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "total": 300,
+  "counts": {
+    "tie": 60,
+    "loss": 128,
+    "win": 112,
+    "unknown": 0,
+    "failure": 0
+  },
+  "categories": {
+    "general": {
+      "tie": 60,
+      "loss": 128,
+      "win": 112
+    }
+  },
+  "persona_dimensions": {
+    "style_winner": {
+      "loss": 1
+    },
+    "usefulness_winner": {
+      "loss": 1
+    },
+    "safety_winner": {
+      "tie": 1
+    }
+  },
+  "decisive_win_rate": 0.4666666666666667,
+  "tie_adjusted_win_rate": 0.47333333333333333,
+  "unknown_rate": 0.0,
+  "failure_rate": 0.0,
+  "judge_models": [
+    "google/gemini-3.6-flash"
+  ],
+  "retry_attempts": 10,
+  "denominators": {
+    "decisive": 240,
+    "valid_including_ties": 300,
+    "attempted": 300
+  }
+}

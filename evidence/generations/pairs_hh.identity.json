@@ -1,0 +1,1802 @@
+{
+  "299f5e0d9d6a45876d2bd993": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "82908737274f263f40941862": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "879232829edfc61da01e0cfd": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ac6fdcf4b1facbe214fa3c5d": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "159a50b51e24b9ff2b9150d5": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "f1de23d9ec0e601da520ad7b": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "8dd2f8c018ca4bce78d27138": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "c4304766ebaea8a946a18641": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "71f33ef96164f1c557c63ed1": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6180939de85058637c080b6c": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "9364814e832aa70c83c19b96": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6e9f4cdbb6dc7a65b753551d": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "51d5aefa614324826122d8d9": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "411b6622a191704cb316a1c3": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "3d07cbc7f24c6bb29195533f": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "bef83ee8fe1ec859e49df4eb": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b6c253cd3105d23330a22b91": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "bde6f2981d210859cf018c1e": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "a792ad520cdbf2f97dea184f": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "3ae4a856885c10708d28ecb1": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0057a2344fdb39e11c34f63a": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "f5b4a90a7c87f39453f2e5f8": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "38b1240f35128d1fe8b40a4d": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "a3603875ab191c0e95c30fe1": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ddfb732feba3b9af52200298": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "9e1329d872ea0bd49f6e32e2": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "51721368373b43ed56f773e5": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "8ab350decea02e04171ae550": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "7aa34f2dccc40e9ebb4246cb": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b308396c3ac224c7bba4ec1e": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "8e96489abe4f4c92221dc72b": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "9b51c13de2cda638556c052d": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6d8e56f6d7c61ae1982bf7a0": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "1947f4accdfe57b02f3e0b3d": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "92d1d201e1176be69b0c506d": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b824b93dc48e93129d0a5c80": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "7d83006934b01973d4fbd39c": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "aaab24544c21fed86bf3ebe0": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6d0fc6a3553f7195a84a48d1": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "92a8f896f2b68ca60ed51792": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ba6d0804e5375924f620e985": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "dc04178e644cba486213ebd3": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "fb3ae20a09a35af24204647a": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "c64fe0a79665d6c49b4fca62": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "c432d18e8393b837720ea19f": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ca3e300429fe7e309a93d027": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0da43702f72202a520392d28": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "3f5db97b4a8a65a43ebe4039": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "37341f154950e49e62545200": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "9688a6af75c2d10f9f809d05": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "4ac36f6fef9f94f6609df3b5": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "335c27ef6ec3576204fcdae0": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "e7fb13ead6f33765d6e6e790": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b7730014d2f6d070f6b190d3": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "851c5ab700d2528a2507302c": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "630aede6006f337fd971dd84": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "05569b5c30ae8fb61f1152bd": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b3b9bcce98ca418b007801d9": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "660598aa29d4e5bef8ed7529": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "aec0c1e0c1f6ea5af9e1f348": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "4ad481279bb615a3992d35cd": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "dba912bcc0c114965c920fb4": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "7db73407b98067c4f0dd585e": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "f86b4e0abb5eac3dff080150": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "45c5ea0317404377449964bd": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "4547ef6938f49b24975e9871": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "bfdd6be153b32c9fd6213d9e": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "013487a5b20ec97ea4a893b0": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "cd45b22d7bc37f839c1c5f9c": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "315c7b015df620d0cadc9441": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "c16c4fdd1ddc90af841c394d": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "238a9d495e29b340e4a93005": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "d9a364086e4fdaeca6795f1c": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "fbbfc5d0d7c724612a7ef340": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "31727e3b0b72b1b6b5c2f81c": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "2230a68e7b833d5fc6dbfef0": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b7f174340ea15e966bc0779c": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "fdf85a1323464d5563cf4483": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0b607b315b72b70015201249": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ef99f6b5c51c0af57a6477bf": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "fae10fc9d7fbe8a56b791d90": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0b64368b86059879759a7b50": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "9984cd4b42afbf300ce9ba9c": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "bb59c2ef84efb1c9c68ec0b5": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ad9b7a75c4c4adf0720ede00": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "d2c564db4c87dd767a8f02de": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "a755dd9c51ccd882a2c08ffd": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6b37ff99abb4648252bab63c": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "c920e17c34959734bfd023fe": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6d5efe569f14147458ecae95": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "cf7ab2553f600368fbca4cae": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "77376c9c01fe7e97abd18862": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "17fcccec60acb825366f7e23": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "beca8bdba8700377dd37069c": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "7b10848e707dd4124227773d": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "2d5745232e1560cbac4a534b": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "2c128d63c1f3a6b0373b0c2c": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "1607c840ab9fdcd4e799e93e": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ccbcb251ad507612a31cf11b": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "62038b86591f13d480559096": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "50987dbbf5d40d30226fda7d": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ad32845df673c6907f33a501": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "34fa6f26e63f44a061c12b66": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "aa7612e9fc524aa8db32e706": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "86c6a4a3630e3a67406a0c06": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "eaa455c35c175ad8750acd61": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ac3f16d984fa3dc04a073d92": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "c79993ee3b611aa7added73a": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "7573dbb48482e619034b048f": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "7f0c2973796bf9563e21fef3": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6b24f18dbe2c120aa816df70": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b563f4b033ac8c9dd56aabb9": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "d582ee2d2dcb4e38f7182edc": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "399f57453b545dcc778716df": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "48d1cd9737b794faf74dbc72": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "d7b40ee5c70f8d83341aa306": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "2127dab21354a1c9c2084561": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "dff499eb9b3ac1497250215e": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0eba2951920f7f2240a30b16": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "15ec878fcca88690bcff91c3": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "a5364b8b9861f888fea7d1d4": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0135061be6743ddbe225abbc": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "f38751ca8ceef8b63a99a5d5": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ed2c3bcb58481b46b2f7e3f1": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "9c7163a49ac5ca6e15b1b424": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "db6f052b0967dbcc323bf508": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "90e8224cba9367073ac7b88e": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "48b5d087442edf4e797bca84": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "03b469f7a7856535e6daf4b4": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "89107e32518362146a05d681": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "3d1116c8563a30e29288fe6d": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b67064324565304036dece1a": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "592f25619eed954ab2910c8c": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "c70ad527c8ea2f041d29bd50": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "cd91b086d67df3e6ddef61ad": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "fffeb60de35e2cb42ba51dee": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "29b4837d0a5053eea93fcfa2": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "2eb56abfc3febe41cc76795f": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "104463708f9ba3ca08d64ca2": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0a9f326ed774f30e8da2b3da": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "34703f6d8eeda255381e6793": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "299335c7012ba1f89cd43c47": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "820fa8ae2a608c0ba90eb969": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "d05cc4732e974107f206a86a": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "a354f1be755ffbb673da9164": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "bb0a13abc71643b4af28a500": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "d0760a73415de7af1ebf4d8f": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "e5680cf3953aff1847e1738f": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "cea848e2b4b21d916751f06b": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "472388a2fd3bdff6c69f3f97": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "dbe5b97456e280b70aabebc0": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "4da45db552377b9e0a54c1a3": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "c1318891b5ea521f785a8d65": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "03da4d3794e55dd945a47ea3": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "58b9da56cf0d1f7f45aefc99": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "152e409c7f3ed5da38cc95bc": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "059ae0e0f6292e41534d96d0": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "8e32e7ce889f2328cea4439a": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b08a0c8fba985793c0cd7cff": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ddde1b1a214feb1865bcc20a": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "00c018b4f5c44bd2edd7de4a": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "054be81cf0277d94ed09b76a": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "df0da4b6641da27aa909ecac": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0c606297bba1369f1c80fff1": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "57d254e8969cf7f9863d1e57": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "21cae522479e7faed52d48fe": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "af06b6b818baef24140bbdd0": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "7aef2122ac38a1ab17197e62": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "e2cece79e8a0fc398364e87f": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "cfce8ffa414d680a4c01c5b2": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "dbf652e5955599c99891ef0d": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "eebeac6b6557a3b2476a6f5c": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "bec17c1ffa638ec8f555bf15": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "2ddf083d29c9753dc9f13d54": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ad0997ff9b6a5d124029b096": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "1b9c346e5689a0050218f214": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ed7a0fee43e1522e15a3d7bd": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "262339181877e4f8664e678c": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "df1e842c8921a356aee66772": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "15e14142fa280837116f1ee7": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "2bad361be63e5948bdcd78dc": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "71824b078e9adca839fc54d7": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "5baea2ce808478c2beaf7253": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "d9045ae57d872f80e74faab8": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "4f09c54b59fe0b7713f86386": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "fdb92d42552bb454c6eba9c6": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "eee566b3084fac3fff993b44": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "40346fffd3a8bfe1b0733f61": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "cda2089149af0d91aa7dfa7d": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "c8527840ae12bae4210d7ba4": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0da4a01ff350dbc3a7df9363": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "d88cbfb837ab346a0ced989e": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "8ea5377f9f617f5291654e6d": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "5111b8bf1d37e82b83ae57c2": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6bf85b0a6f793e9567056086": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b425979c029c2591da3ba632": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "f27dcbf0a4e4bf5a0e493d10": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "68dd2593333cf7eef1457825": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6704cebb25b36ce9c23f3517": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "541a009d4dd2034c94c25dc1": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "884436cdb9a9e8a178b70175": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "45cfb356ddb49f7144a1297b": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "09d69a8ebe18416e3e9368f9": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "c9625639d0a588fbcb912eb3": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6e9c3bae91deaa46a63e5534": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "06d6bf9bb26114877ed582e0": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "5eb6dde394b6bc652473ce0e": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "08924dc547f7e7d9fa7a7ef9": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "55ba5d2cd19b470b8b442d0d": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6246226728f3a96dc1e8284b": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "f2d395242056190b8a778af7": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6d31f251b181c67e4e4b605b": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "78a769cb7273f0e56aba5046": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "a9fc2344b7e63bfb6ae35b0b": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "79c3387858121b6a7d66848a": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "e7fcdec93c64440cb0128774": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "02571ccacfeeafe2b1c3952d": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "926f03a205f8a315275bacfe": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "410072d13762176779d3fe27": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ccd22bbec98316b4f16418b2": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "5ccd7b4b6eff0c51860ef083": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "95f8927ee549882cd9c1cb5b": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "2a6d911497c1e5ef1b1a8972": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "30401b54de552d9136e90a1b": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "dc903c19e09529dc51bf4b04": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "9218d7811a84333ecc36fd18": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "209ab41743549c230cfa0753": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0da6923d77f486819035442b": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "74d295828cd76f6e3663bc25": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6ac4c13111e30a325944c660": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "33fd13d486a4c7d98b4f6c46": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "dbb7b945110f2f209da5629c": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6e07e24fe4c373e4d4f97e89": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "8dcb71b250e2a043214f8ab4": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b61e5682455a5e67de052d11": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "a54c93c5aaa83f5bf33fd878": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "2fe53c360b5a9fa201173e5c": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "82f4401a84adf4a31cf3bb4b": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "a4c58ea560f3894f4e3d2da2": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "28056b681f82450172cf90dd": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "7de6b861e94bca021c079044": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "44db8bf95e0955750bda3553": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "14703ebc3405d7d6dbdd5200": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0c1cd3774698eecd0399a227": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "7faa814eb8a637fa3f8f9b1a": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0205273765dc07c0ce608424": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "ade1c52e189329458de348b6": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "55c135477e17269e06d7689e": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "551d728140f49d17e3851db1": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b0a076bdf90f54bf170c6cbd": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "dbae3af6399e4995dca911ec": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "1d2630bb49c06fc62e195aa5": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "79dd060fb11c8bd797215488": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "791ab2e3a037fec9a7f8321e": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "fb513afa997537350c57a058": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "55278a5fabaa34f54b5218c8": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "e2a7276bfae4cc969bc912b0": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "60b72c3b7accb93d072ff535": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "076b69964deed936a47fd00d": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "27dc7e1496a283386deb6be5": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "8ce223ea1cfb5181fba25432": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "da222c6c108b04dc482cad5a": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "4c829845ed1f2d3203b8a638": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "7230acb1caf89b97add396b0": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "c1fb30442efcea12f386fcce": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b6048063cfbc3971746e0901": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "bcaab4b93a9a6724282507d8": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "2a434ce2463f7c9cf0698c94": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "94758c8c22d73d5a759d7cfa": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "97a5e9c14d2f3c1229d2c396": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "74a380ebf9b1dc9a8da5bf23": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "fd32a83feb993b622c105b57": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "a10bc766552041a2daa472af": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "491a9fff2feb950ffaa29946": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b202766ebb46fc2b183ce6d6": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "8325d2efca991376c86e8b05": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "b9da4d6660fed2fb9efbb17f": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "43b252c659472ea627e931b8": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "afce71f2fa834e9896cfec3d": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "dcd75413895836fa1b0ae738": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "d7bf383332958640a2f64d19": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "11ccaf0e42642a066b37f321": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0953025ebcb2bae1cd05b07e": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "8d7f4e9fe09878e6742f0ef1": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "12b8e7f2c6bde9292c554147": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "7353ae85f8e3f71cdef14531": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "e78e8cc9b2d5d734c1f03dae": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "8c5d1ee60afa3347fbb0a837": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "03aa5ab84e8f03e8bff25dd1": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "20cd6af030f2a1c16e691908": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "4ec1dd0948af9756bd9d0a51": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "0439ccb38baec93bda8caac9": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "760035df22f190036850527d": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "1085aa24e5595770e11aab89": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "e9c562dff503b661c15a0afd": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "61fd4b257310250ebf7de888": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "d56d41058547c5c0b0f74be9": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "712e6df6254c6fa42603505d": {
+    "A": "hh",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "6355561175c4807df5387906": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  },
+  "981edd1aaf42d7e6e37893a7": {
+    "A": "sft",
+    "B": "hh",
+    "baseline": "sft",
+    "candidate": "hh"
+  }
+}

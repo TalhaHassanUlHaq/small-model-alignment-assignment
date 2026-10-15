@@ -1,0 +1,33 @@
+{
+  "seed": 42,
+  "max_length": 512,
+  "max_prompt_length": 256,
+  "eval_every": 100,
+  "clip_grad_norm": 1.0,
+  "train_size": 15000,
+  "val_size": 1000,
+  "epochs": 1,
+  "batch_size": 1,
+  "accumulation": 32,
+  "lr": 1e-06,
+  "weight_decay": 0,
+  "beta": 0.1,
+  "track": "uf",
+  "reference": "/kaggle/input/notebooks/hanzlasajjad2026/small-alignment-sft/results/sft/best",
+  "data_manifest_digest": "4f21b7b4c14f324063e317a0b084ecdf4b61fe8237d647842fa41e6e941ad8da",
+  "max_steps_override": null,
+  "precision": "fp32 weights; fp16 autocast and GradScaler",
+  "optimizer": "AdamW",
+  "schedule": "constant",
+  "sft_reduction": "mean over scored response tokens",
+  "trainable_parameters": 494032768,
+  "versions": {
+    "torch": "2.11.0+cu128",
+    "transformers": "4.46.3",
+    "datasets": "3.1.0"
+  },
+  "devices": [
+    "Tesla T4",
+    "Tesla T4"
+  ]
+}

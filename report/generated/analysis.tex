@@ -1,0 +1,21 @@
+On the HH evaluation, HH-DPO had the higher observed score under this judge: HH-DPO's tie-adjusted rate was 56.3\%, +6.3 percentage points relative to parity, with +38 net decisive wins. The prompt-bootstrap interval excludes parity. This is a measured association on fixed prompts, not a causal estimate of the preference dataset's effect.
+
+Within HH, the lowest observed category was harmful\_instructions (41.7\%, 30 valid), and the highest was self\_harm\_support (75.0\%, 30 valid). These small category slices are descriptive.
+
+On the UF evaluation, SFT had the higher observed score under this judge: UltraFeedback-DPO's tie-adjusted rate was 47.3\%, -2.7 percentage points relative to parity, with -16 net decisive wins. The prompt-bootstrap interval includes parity. This is a measured association on fixed prompts, not a causal estimate of the preference dataset's effect.
+
+On the PERSONA evaluation, original instruction model had the higher observed score under this judge: LoRA persona's tie-adjusted rate was 48.8\%, -1.3 percentage points relative to parity, with -1 net decisive wins. The prompt-bootstrap interval includes parity. This is a measured association on fixed prompts, not a causal estimate of the preference dataset's effect.
+
+Within PERSONA, the lowest observed category was cooking (40.0\%, 10 valid), and the highest was safety (55.0\%, 10 valid). These small category slices are descriptive.
+
+Both main DPO runs used one epoch and $\beta=.1$. Validation reward accuracy was 0.619 for HH and 0.697 for UF, but this measures fitting to each preference source. The external judge uses different prompt sets, so the two judged rates are not a head-to-head dataset comparison.
+
+Persona validation reward accuracy reached 1.000 on just 22 held-out pairs, whereas the 40-prompt style judge gave 0 LoRA wins, 0 losses, and 40 ties. The small validation score alone cannot establish style transfer on new prompts.
+
+HH outputs averaged 176.5 generated tokens for the candidate versus 180.2 for its baseline; 101 versus 117 reached the 256-token cap. Response length and truncation may affect judging.
+
+UF outputs averaged 204.3 generated tokens for the candidate versus 172.3 for its baseline; 174 versus 119 reached the 256-token cap. Response length and truncation may affect judging.
+
+PERSONA outputs averaged 218.2 generated tokens for the candidate versus 215.9 for its baseline; 26 versus 25 reached the 256-token cap. Response length and truncation may affect judging.
+
+An independent Gemini 3.8 validation judge agreed with the final judge on HH 241/300, UF 233/300, PERSONA 37/40 overall A/B/tie decisions. This disagreement is a measured limit of model judging.

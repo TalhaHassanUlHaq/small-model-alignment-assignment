@@ -5,6 +5,7 @@
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{amsmath,amssymb,booktabs,tabularx,graphicx}
+\usepackage{float}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \setlist{nosep,leftmargin=*}
@@ -122,8 +123,8 @@ modes; the full judged counts above determine the comparison.
 
 \section{Limitations and reproducibility}
 \input{generated/limitations.tex}
-These experiments use one seed and relatively small evaluation sets. A single
-model judge can exhibit position, verbosity, style, or safety biases. Training and
+These experiments use one seed and relatively small evaluation sets. Model
+judges can exhibit position, verbosity, style, or safety biases. Training and
 evaluation data differ in distribution; preference accuracy and generation quality
 need not improve together. A negative or inconclusive result is retained rather
 than replaced by a selectively favorable comparison. The original DPO objective
@@ -131,6 +132,7 @@ and motivation follow Rafailov et al.~\cite{dpo}; the HH preference source follo
 Anthropic's helpful/harmless work~\cite{hh}.
 
 \input{generated/artifacts.tex}
+\clearpage
 \bibliographystyle{plain}
 \bibliography{references}
 \end{document}

@@ -1,0 +1,21 @@
+{
+  "status": "complete",
+  "best_step": 36,
+  "final_step": 36,
+  "best_metrics": {
+    "eval_loss": 0.42572346329689026,
+    "eval_runtime": 1.4332,
+    "eval_samples_per_second": 15.35,
+    "eval_steps_per_second": 7.675,
+    "eval_rewards/chosen": 0.47088441252708435,
+    "eval_rewards/rejected": -0.17219214141368866,
+    "eval_rewards/accuracies": 1.0,
+    "eval_rewards/margins": 0.643076479434967,
+    "eval_logps/chosen": -167.59182739257812,
+    "eval_logps/rejected": -121.94429016113281,
+    "eval_logits/chosen": 0.5617414116859436,
+    "eval_logits/rejected": 0.3983396291732788,
+    "epoch": 2.909090909090909,
+    "step": 36
+  }
+}

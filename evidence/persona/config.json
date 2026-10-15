@@ -1,0 +1,28 @@
+{
+  "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+  "train_size": 198,
+  "val_size": 22,
+  "epochs": 3,
+  "batch_size": 2,
+  "accumulation": 8,
+  "lr": 5e-05,
+  "weight_decay": 0,
+  "beta": 0.1,
+  "rank": 16,
+  "alpha": 32,
+  "dropout": 0.05,
+  "target_modules": [
+    "q_proj",
+    "v_proj"
+  ],
+  "seed": 42,
+  "max_length": 512,
+  "max_prompt_length": 256,
+  "reference": "HuggingFaceTB/SmolLM2-360M-Instruct",
+  "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+  "precision": "FP32 adapter weights, FP16 autocast",
+  "optimizer": "AdamW",
+  "schedule": "constant",
+  "gradient_clip": 1,
+  "trainable_parameters": 1638400
+}

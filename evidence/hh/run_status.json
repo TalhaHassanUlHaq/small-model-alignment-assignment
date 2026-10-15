@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "step": 469,
+  "epoch": 1,
+  "offset": 0,
+  "best_score": [
+    0.619,
+    -0.655282109413296
+  ],
+  "elapsed_seconds": 13441.937126634
+}

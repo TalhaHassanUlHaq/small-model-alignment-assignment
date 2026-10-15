@@ -18,3 +18,4 @@ artifacts/
 *.blg
 report/draft_report.*
 report/draft-preview-*.png
+report/final-preview-*.png

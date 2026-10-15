@@ -1,0 +1,60 @@
+{
+  "total": 40,
+  "counts": {
+    "tie": 13,
+    "loss": 14,
+    "win": 13,
+    "unknown": 0,
+    "failure": 0
+  },
+  "categories": {
+    "cooking": {
+      "tie": 6,
+      "loss": 3,
+      "win": 1
+    },
+    "coding": {
+      "loss": 4,
+      "tie": 3,
+      "win": 3
+    },
+    "general": {
+      "loss": 4,
+      "win": 5,
+      "tie": 1
+    },
+    "safety": {
+      "win": 4,
+      "tie": 3,
+      "loss": 3
+    }
+  },
+  "persona_dimensions": {
+    "style_winner": {
+      "tie": 40
+    },
+    "usefulness_winner": {
+      "tie": 13,
+      "loss": 14,
+      "win": 13
+    },
+    "safety_winner": {
+      "tie": 32,
+      "win": 5,
+      "loss": 3
+    }
+  },
+  "decisive_win_rate": 0.48148148148148145,
+  "tie_adjusted_win_rate": 0.4875,
+  "unknown_rate": 0.0,
+  "failure_rate": 0.0,
+  "judge_models": [
+    "google/gemini-3.6-flash"
+  ],
+  "retry_attempts": 0,
+  "denominators": {
+    "decisive": 27,
+    "valid_including_ties": 40,
+    "attempted": 40
+  }
+}

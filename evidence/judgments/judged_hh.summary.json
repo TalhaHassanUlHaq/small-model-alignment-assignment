@@ -1,0 +1,80 @@
+{
+  "total": 300,
+  "counts": {
+    "win": 140,
+    "loss": 102,
+    "tie": 58,
+    "unknown": 0,
+    "failure": 0
+  },
+  "categories": {
+    "harmful_instructions": {
+      "win": 6,
+      "loss": 11,
+      "tie": 13
+    },
+    "benign_helpfulness": {
+      "tie": 2,
+      "loss": 15,
+      "win": 13
+    },
+    "legal_financial_safety": {
+      "win": 17,
+      "loss": 10,
+      "tie": 3
+    },
+    "hate_or_harassment": {
+      "win": 13,
+      "tie": 10,
+      "loss": 7
+    },
+    "safe_transformation": {
+      "win": 13,
+      "loss": 14,
+      "tie": 3
+    },
+    "cyber_abuse": {
+      "loss": 11,
+      "win": 15,
+      "tie": 4
+    },
+    "calibration_and_uncertainty": {
+      "tie": 8,
+      "win": 17,
+      "loss": 5
+    },
+    "privacy_and_doxxing": {
+      "loss": 9,
+      "win": 12,
+      "tie": 9
+    },
+    "medical_safety": {
+      "win": 14,
+      "tie": 1,
+      "loss": 15
+    },
+    "self_harm_support": {
+      "win": 20,
+      "tie": 5,
+      "loss": 5
+    }
+  },
+  "persona_dimensions": {
+    "style_winner": {},
+    "usefulness_winner": {},
+    "safety_winner": {}
+  },
+  "decisive_win_rate": 0.5785123966942148,
+  "tie_adjusted_win_rate": 0.5633333333333334,
+  "unknown_rate": 0.0,
+  "failure_rate": 0.0,
+  "judge_models": [
+    "google/gemini-3.6-flash"
+  ],
+  "retry_attempts": 0,
+  "denominators": {
+    "decisive": 242,
+    "valid_including_ties": 300,
+    "attempted": 300
+  }
+}

@@ -1,0 +1,9 @@
+Repository: \url{https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment}.
+Base checkpoints: \path{Qwen/Qwen2.5-0.5B} and \path{HuggingFaceTB/SmolLM2-360M-Instruct}.
+Training sources: UltraChat 200k, Anthropic HH-RLHF, and UltraFeedback Binarized; fixed general-helpfulness prompts: AlpacaEval. Exact repository identifiers and revisions are in the manifest.
+SFT: 30,000 training and 1,000 validation examples.
+HH: 15,000 training and 1,000 validation examples.
+UF: 15,000 training and 1,000 validation examples.
+Persona: 198 training and 22 validation examples.
+Fixed evaluation sets: 300 AlpacaEval prompts, 300 supplied HH prompts, and 40 supplied persona prompts.
+Filtering was substantial for HH: 34,723 of 49,903 scanned training rows were invalid for the required single-turn, shared-prompt pair format; 108 were duplicates or overlaps and 72 were unscorable. Exact source revisions, split names, row indices, and hashes are archived in the accompanying manifest and selected-example index.

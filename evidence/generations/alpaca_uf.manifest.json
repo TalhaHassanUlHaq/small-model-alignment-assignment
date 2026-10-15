@@ -1,0 +1,13 @@
+{
+  "signature": "c0a6805b6f955dffcc7fb989b741f635b9c0ba970e4dc8f61bd51daa63f8332a",
+  "model": "/kaggle/input/notebooks/hanzlasajjad2026/small-alignment-uf/results/uf/best",
+  "revision": null,
+  "adapter": "None",
+  "settings": {
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "repetition_penalty": 1.0,
+    "batch_size": 4
+  },
+  "expected_count": 300
+}

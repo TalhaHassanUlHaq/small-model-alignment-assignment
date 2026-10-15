@@ -1,0 +1,85 @@
+{
+  "seed": 42,
+  "sources": {
+    "sft": "HuggingFaceH4/ultrachat_200k",
+    "hh": "Anthropic/hh-rlhf",
+    "uf": "HuggingFaceH4/ultrafeedback_binarized",
+    "alpaca": "tatsu-lab/alpaca_eval"
+  },
+  "revisions": {
+    "sft": "8049631c405ae6576f93f445c6b8166f76f5505a",
+    "hh": "09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa",
+    "uf": "3949bf5f8c17c394422ccfab0c31ea9c20bdeb85",
+    "alpaca": "2edc6fad8be6b14ea7230aabfd08188da6b8b814"
+  },
+  "model_revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+  "persona_model_revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+  "filtering": {
+    "sft": {
+      "train": {
+        "scanned": 37332,
+        "invalid": 4,
+        "duplicate_or_overlap": 1,
+        "unscorable": 7327,
+        "count": 30000,
+        "sha256": "28dacfb303409001c3ecb760484ecc2baf2ecc7137bfe0049bd242549e83b542",
+        "split": "train_sft"
+      },
+      "val": {
+        "scanned": 1240,
+        "invalid": 0,
+        "duplicate_or_overlap": 0,
+        "unscorable": 240,
+        "count": 1000,
+        "sha256": "6fd1c74f0a63a25cace5aac6128f68c75f4f97b070bbde51d8136a6d97d99ba0",
+        "split": "test_sft"
+      }
+    },
+    "hh": {
+      "train": {
+        "scanned": 49903,
+        "invalid": 34723,
+        "duplicate_or_overlap": 108,
+        "unscorable": 72,
+        "count": 15000,
+        "sha256": "e60b4cc1af327120073b3ba031961c0a9babeb40eaafd17c7ea803475d98dc85",
+        "split": "train"
+      },
+      "val": {
+        "scanned": 3502,
+        "invalid": 2478,
+        "duplicate_or_overlap": 20,
+        "unscorable": 4,
+        "count": 1000,
+        "sha256": "56f45a55b5da3d17049c7efd2b1a21179f8e93862f2082116eaedf8bbfdcc204",
+        "split": "test"
+      }
+    },
+    "uf": {
+      "train": {
+        "scanned": 18688,
+        "invalid": 155,
+        "duplicate_or_overlap": 63,
+        "unscorable": 3470,
+        "count": 15000,
+        "sha256": "0b6f149eda6bffecd808baffcd5bd417f4ec1d6d7a3e49363323dfaa36bc5b7f",
+        "split": "train_prefs"
+      },
+      "val": {
+        "scanned": 1211,
+        "invalid": 8,
+        "duplicate_or_overlap": 4,
+        "unscorable": 199,
+        "count": 1000,
+        "sha256": "6dae3d289d0ac9db9f81a5c3a7cd8b112e4d287e3ca6d83982249e2debb87a10",
+        "split": "test_prefs"
+      }
+    }
+  },
+  "template": "### Instruction:\n{instruction}\n\n### Response:\n",
+  "persona": {
+    "train": 198,
+    "val": 22,
+    "sha256": "4e6b161d6ae249e81e12be357f9ad3bbd097883545715332f7390ceb73ef821c"
+  }
+}

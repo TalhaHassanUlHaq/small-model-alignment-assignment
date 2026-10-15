@@ -1,0 +1,13 @@
+{
+  "signature": "6828a3f079550fb6414c2285c5c04c2f6330de8346fd79fbeafafccc5ffd6690",
+  "model": "/kaggle/input/notebooks/hanzlasajjad2026/small-alignment-sft/results/sft/best",
+  "revision": null,
+  "adapter": "None",
+  "settings": {
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "repetition_penalty": 1.0,
+    "batch_size": 4
+  },
+  "expected_count": 300
+}

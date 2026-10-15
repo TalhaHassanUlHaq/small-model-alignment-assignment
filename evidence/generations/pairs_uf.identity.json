@@ -1,0 +1,1802 @@
+{
+  "445ada10daca85df4aa7eee6": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "52668615dd81e950dbb8598e": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "8ef8abfb3ece6381755e1a18": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "02d249bb41f5be2af9163344": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "423f1961a7b0f54148627f83": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "7cf38d697e3fb9a6ceff45b6": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "aa0e28ef5d66cb1df5b4c60b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "e5b14834d699b6fc124b850e": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "7bfd082b89e5d9e915535d22": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "72d989b46830b1796f86cefd": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "969b71d0807607c9194de397": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "ec7b4afeea9c89743cb80881": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "35ff744e6a884d1624746a87": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "735a0bf750cd369c5e379c94": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "0f8b8a5d08a57eef272662a0": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "1a2eebe4528594dafe427789": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "7d695be67e60db9c34dff117": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "2160bc1189ec93dd26a4265f": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "2e16ef755515c654615caa39": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "d2a63cbe50d80d94b52cf9c6": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "1ab346211b1af42f57a4cb8b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "bfc31f19e2f94d2cd6b91379": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "a8601dec7409a2d219db1453": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "fc19948ad14c0c03f955464a": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "136add48d58626548b9643e0": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "edf7cabed0d0677a815bdb39": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "415603b5f38278b9cd705f29": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "96ef37f8e2112768a6178f59": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "31e81b0c61f8d25ec05447a0": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "1cb11b74790bca6df0825e91": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "bc91154abeb910d28a1a7847": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "923a505d9efbbef4b4f287ea": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "90c8e90df37ce676b51bcd62": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "144936ed52ff89669fe26c34": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "28b68121017c97c22d8d3935": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "ad6104315ad8acce4c8328d7": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "3e1479b6f48f354a9f221c98": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c0991f16c9aad67d99815d53": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "00882bb71f519d57f3823538": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "33aafa80b52dc427a37edd02": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "478522b3b3f0990a9d00d1a2": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "375b4a97f61ba6cbf8257058": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "328e8c47098560ef824bef39": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "164c1287ef1a45fffe756ceb": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "13c3b3d307d9600b0f3d5449": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "2d8e7127b8e18cacbcd0f942": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "6642a7de104d7a3ce92a35ac": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "ac65ae60c1aeeefc72ce559c": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "58eca51b37ea7dafdbf11fe1": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "56ef1a8df315d873898410c6": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "544c6b095b46b12174711513": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5cfdecf5623a6da786477f44": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "1cdbd0bdf84dabcee661d1f7": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "8ed4b6f9440f03c2bc12cec1": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "311926940c60e0929cd4738c": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "cf9f4c2162c21389d0ee3b5a": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "91d0df98d0ff9c0070f668d8": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "4b39a7b2c60c86c992798e7b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "95ab52cd97c49c545747060d": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "e7e914b0564c8c2dae20ec53": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "a9c973d1a9324ae1f6172c7b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c09e98c8c47864578c8e244f": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "0b764195a28f4c75a938dbfe": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "d72c68986ce3f355324c0485": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c9640e213767a978c594456e": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "40573c2e0b3e1e411d2d0352": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "46035b38b59396afcc58dec9": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "94ae5e2adb9785d4f61b4cd0": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "267549b79591dd71bed2b0e7": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "9f3a30d8184748e7abeb9e68": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "e7cfb3b34de637302c1935fa": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "a3bc0e8d9a43eff7a3dbae68": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "fd5ff5a1d4a29e53ded07652": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "ce3ef843738e7a197f90e8ef": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "dc08889b3d5546b00e43a988": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "3410f7237f827093433ef1bf": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "a0c1e9b3e8076b06f542f467": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "9266ec3e6fad99aeb27d3863": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "0d7bb14277ceba0d0105cfbb": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "275d8a175716b7b1af9ad2de": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "78d540adb6cc0a7abd76cebc": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "7ca59513c73544eeacce7235": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5271d36a6affd2584b2e2fc0": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "f0ae3e628cd7bcb7f5b58851": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "62186f4a63565aeeda203c93": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5e0c4b122375d8f9e1d925d0": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "e1e1ddfb8642419cb6080029": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "0a90e61b2f7a634d0535cc4e": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "3e342946729bb9a74db9cb6c": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "03bbd081edcc3681ca8345d9": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "1b776e30e2839d21fefcbe73": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "9b72a618b7d28a95994649ad": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "78055244fdbb2bfbe9cb9495": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5429c0c9df095dae4608d45b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "8328fc5781e14ac0aa675fe6": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "50d7012ce77618f2c9f35c5f": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "25d75833ac459911861c5909": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "8c2543645858c5a9800fcc75": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "8da07b877a37487fe48e1c92": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "3413d09188798ac64ac892ac": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "3d2991aac42350841e13a4e0": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c83d42a05746618085050794": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "bc7b453b44359155bf601fb1": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c5023c24cb4e35d73ddd16e5": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "9c01a4d0e9a15e5e039c8b4b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "185c0562730241d7ee37abbc": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "40150aed700eafed3dea8c6c": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "397c94090012b5d55542fbc9": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "769af82c25328ac389ccd1ca": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "fe3fc95809483ecbc9507419": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "ed69a05038455eb45b529baf": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "e1a2f64f87e5b1c1d46c08e4": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "62e69b51162b5890eaf372d5": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "fe1cb0bbd83803c3eaf3ec8f": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c0c4fa1e23b235a9f48eddbd": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "6f862f62a1856eba9d223af8": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5fd2d4184a7c7bc754d456dd": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "53f762fd546c86dfb8b916f4": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "d762031c9188c13f65e32ee6": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "bf1a6d6354006da858703c7f": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "f6779f33f81916d0cd88d14b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "10b3e170084f3a316ba29c1b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "e5d7abb272f7e949f40cf8cf": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "440d516968736cf86f166d63": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "59cedff12bf435e4596c9897": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5d844d7e595470c57d25c495": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5289061da0bd993d185252c7": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "d95e5e7b628e59294b0e174e": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "e21bafea9dc83d89a536c165": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "3a0b7a631c020b81dc77cc02": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "19538eec42bed9de0496da84": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "a0718ee50462cf6d5e45ed91": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "ae4e3e7e8a63113d1f1543b3": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "43f9aca475d309ad3c3feb0c": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "587776020e0e2fc6ec9f43d8": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "f5be5095f83fbca1486cf96e": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "d3afe1c59e5c9ea3bfa23035": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "0648e35b83c0607b60e796c0": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "74abf168bfc7b21776624b8b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "0f39b0cdc29ab32c37f16f1e": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "8e87933b22b2ad1c9d059608": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "02fe17c4519dcc4783644388": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "38e7f960f3796b96b48e0e4d": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5ae7fdd4639be693873bc045": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "7b1e202a10fe5f30cb2ed0e9": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "73dd4b32ba1504f27177f5a2": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "df759a5d47c3b5ca0eebf3a2": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "7dac173e9aebf6f6bf486823": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "2e6ae67db5cfbc981a46c6b5": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "bdce35d8b7a3e0a8c9ab9adc": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "24824c58f233bd3628f4ddc1": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "285e44311e7c030658785dfc": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "f92d274a9242b9df6489ed7c": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "43ec7072612780ea89d42d18": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "153ccd5e3c0c8ac338dc4e3d": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5b5038a1c64ebd89b3bd852b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "d7e107069509851bff9d1776": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "cbb3fd9a499b201209746206": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "fd34b88a885920b55ba1e289": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "1215d7e177d09569c049a40a": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "3cc39e820eea3e56b29f57c9": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c7b5bb69d3279e329adc9448": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "3b424d811c388fd342f7af47": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "a491bc889fe1455c7e5b0b1e": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "781dc039a4df4bca79919d87": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "70ec03101128a046edd55568": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "8cf6d421c6ba2ba1a93d2616": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "064afbf7c417ae1b467f14ff": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "62bcbd89adcd8a0fe5ff868c": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "85738bc95e98f9e1b1bd20ef": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "27249659d498f36140470956": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "f1482d3914d7bd94347465c8": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "44c18f42d43e1219afd417b0": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "d8ba3dca36576bf111c61dd7": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c646420efaeb7594d1c7d191": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "02bb2e9e8b1638805175a374": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "4db31a055d5bec1a3bf093a3": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "500bb9416cee3416818e7721": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "060c15ae6a18abdb6b714e91": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "1b8422646a4323639d703c22": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "eb21d8ee722c1fb8e2c05f4c": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "4b54b0ddc7ba6300e5a229e3": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "50f52ad5b3b94f1ce2a37ae7": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "dc504195b6f60606f22a0d22": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "35a5556cfa4d57b11a80a6a0": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "7965a29d27f131ef411926e7": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "4b23eab266a4825f01df5c3d": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5eb0ec59aea9d8cc42bf8ae7": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "aefd902edac111c4d6b95d4d": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "f93980b2fa585639799f26df": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "65f919c92c89b0c86a1459dd": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "daa5f958f72014c39adb9f00": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "2b8f955972b3109b70ba4500": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "8e54a507de472109d92bf7c7": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "4d46a36dc7eb2feb12f62f00": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "108079b311fe215a302216fd": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "d35d2a9a01b692bba7614f56": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "dd1146dceaacf928049382d7": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "0796f45a57a0a9779cfb8275": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "1b1ad2dfac94206b0035879c": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "f0aa96efa0de9c9be286a3e8": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "24fe151df7cb52bc9eaf1264": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "3091a9661392c1bf853abfa9": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c81b5b73e113d6257bcb2856": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c729cf44a7fc55bf35ad94f4": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "b84a836cdd3e044324cb3c41": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "1f822d388dac545e597f542a": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "12c414d0af1f993eb571ff9d": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "fcae8f13bf4d36e7ec3fc696": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "6a94b70f89b011c7704f9429": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "896c19e9ec0e6e909c467312": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "3bbc1fcbac4b558cd3f1ff64": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "1dae47f8481c82dcc28cab71": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "7fa5e0234504fb09db3ef59b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c875c4e46b2a487f28b02b1b": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "8fd54c039f8bd4a82b72493c": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "323192dc8307a2dd4968ad08": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "63e7eb69fa4cd9624a65f4a0": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "f740b51f392c4ba85207b3e2": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "432b1a1770c33cfc625097c5": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "a774e6695f096543574069bf": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "531b279c6ad0c49a297f6abe": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "fafba60f0a845808bde3a03b": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "815750819c06daf49730fa0e": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "b5c03a5e44a7731d4eac7a5c": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "1315f6992c9454a5ad72950c": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "76400545cf9275461177d37a": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "76d1b8ee29fb6543692a94d4": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "ebec4069ba79445a79750c58": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "ba9e76e99a9785a1a0514a9f": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "99c6cece4ab22bdbe43acb10": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "a1f2208a7f576b1790e7bfa3": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "b87766ae05c7a1e26c9796ac": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "7582cb16d5ca425a0400fd89": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "6367334d268ae5893f770cd1": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "166a7ee8b967e4ea54ea6162": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "e362a8fd783669f3312a2926": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "37cd0f76038c93fb54ecfd11": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "877b091cd1024a3b0c6251dc": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "00cd9344ab8c6f56249495c0": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "4a944bb5043df91a816c455c": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c36799eb776ce684980dc3a5": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "21afbce4aa62fb9ef0bc79dd": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c09b965032ef342f413d4f2e": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "2642e5b808781d63e4ae13a8": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "76ad10f8c47f1a9a1d6e389e": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "edaef1e9dfba4f41d19394c8": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "463b4ef48006916876914791": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "21df1a77148ab5e2eac1f5a9": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "3e9d951fbf249313fa5b2995": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c112a20e6d666f6784ce5876": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "80b2e6a0fd0cb0233df4981f": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5e6bcd80b93cecb1fd82221d": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "66d1242bf173782448ef9872": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c2d626d010162f44ce98123d": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "c4bc2df1282d19adeed0d77d": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "f0217037daca21b42d0e6de6": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "d460e8af45cbd4fc6e35241b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "86640584d57ae21b4862e6d3": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "8eb8fff00d34b847318b4a35": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "ab317c20006ed84bf17e5003": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "538569203b03a00be30de01b": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "0234eed3cf49acbef3d53ecc": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "7697bc12c941dd4cd4a9d348": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "cfe493e8873d2207f4166b7e": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "f5a9251ed0e86710d2801ce3": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "917be62de024394b6e023f56": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "a5726b87dd8cfe89eba8a822": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "ad6f45cbeb29a42a3a8ed570": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "eaaf8c8c6a029efafc10b09f": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "243340434609b39124e621b0": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "2690a07b7cfe3ce9a63233d2": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "8cf20d4d1ccb71af47f53342": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "7f5b53b5444ac12006fd15f8": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "877384d3228bbfeae062c9de": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "d5096f306e68548d11f6366c": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "e364b1a4397b66d666d7fc6f": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "01460c41f79670f7172f1726": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "e0a2192dcb65cf0bfcf627c9": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "f51d7bbdeb8d180cd99257c9": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "bba1600f83424f9bc8dd65b4": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "aca2d86899f5c68efa51f8cf": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "8f2f3e123402882c609c8abd": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "9f15c6185292485e7bf7e213": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "61cc2611948229a3822a69d1": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "b33559806bf51560a0b8b8d1": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "038a683afb7329c201cf86d6": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5417081d791ca671d4c05174": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "e358a9544e26380c4d6b59de": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "6f73b7e567b36dc2dbdce418": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "2c17eac9e61201ff14dddeea": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "f8022477df38b2eba8380bcd": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "a052ad0ec66f8d2a1a078b95": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "9e7775e6dfac81cf14d58ace": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "e3f597c024ba3e777c323717": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "0a6f918e7e008cec5269d322": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "5453306149b740f73f397a0b": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "d84374b275b3aafcd11e7a91": {
+    "A": "uf",
+    "B": "sft",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "ef18d0f23a3fca1046f523fc": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  },
+  "986a06dfc96923c1815583e8": {
+    "A": "sft",
+    "B": "uf",
+    "baseline": "sft",
+    "candidate": "uf"
+  }
+}

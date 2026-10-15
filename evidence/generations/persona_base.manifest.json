@@ -1,0 +1,13 @@
+{
+  "signature": "f73bd6575eac1a3ca4cecb1d15cce1cde4b57b0ecd7c3a9132217256c0dc5b45",
+  "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+  "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+  "adapter": "None",
+  "settings": {
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "repetition_penalty": 1.0,
+    "batch_size": 4
+  },
+  "expected_count": 40
+}

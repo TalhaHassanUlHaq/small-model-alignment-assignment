@@ -1,0 +1,19 @@
+\begin{table}[H]\centering\small\begin{tabular}{lrrrrrr}\toprule Track & $N$ & Wins & Losses & Ties & Unknown & Failures\\\midrule
+HH & 300 & 140 & 102 & 58 & 0 & 0\\
+UF & 300 & 112 & 128 & 60 & 0 & 0\\
+PERSONA & 40 & 13 & 14 & 13 & 0 & 0\\
+\bottomrule\end{tabular}\caption{HH/UF DPO versus SFT; persona LoRA versus the original SmolLM2 instruction model. Each track uses its designated prompts.}\end{table}
+
+HH judge: google/gemini-3.6-flash. Decisive: 140/242 = 0.579; tie-adjusted: (140 + 58/2)/300 = 0.563. 95\% bootstrap interval [0.513, 0.613]. Unknown 0.0\%, failure 0.0\% of 300; 0 successful-item retries.
+
+UF judge: google/gemini-3.6-flash. Decisive: 112/240 = 0.467; tie-adjusted: (112 + 60/2)/300 = 0.473. 95\% bootstrap interval [0.423, 0.525]. Unknown 0.0\%, failure 0.0\% of 300; 10 successful-item retries.
+
+PERSONA judge: google/gemini-3.6-flash. Decisive: 13/27 = 0.481; tie-adjusted: (13 + 13/2)/40 = 0.487. 95\% bootstrap interval [0.350, 0.613]. Unknown 0.0\%, failure 0.0\% of 40; 0 successful-item retries.
+
+Persona style: 0 wins, 0 losses, 40 ties, 0 unknown (40 dimension labels); tie-adjusted 0.500 (40 valid).
+
+Persona usefulness: 13 wins, 14 losses, 13 ties, 0 unknown (40 dimension labels); tie-adjusted 0.487 (40 valid).
+
+Persona safety: 5 wins, 3 losses, 32 ties, 0 unknown (40 dimension labels); tie-adjusted 0.525 (40 valid).
+
+Intervals resample valid prompts 2,000 times with seed 42; they do not capture judge uncertainty.

@@ -2,9 +2,11 @@
 import argparse
 from datetime import date
 from pathlib import Path
+import random
 import shutil
 import subprocess
 import sys
+import textwrap
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -16,6 +18,29 @@ def tex(value):
     replacements = {"\\": r"\textbackslash{}", "&": r"\&", "%": r"\%", "$": r"\$",
                     "#": r"\#", "_": r"\_", "{": r"\{", "}": r"\}", "~": r"\textasciitilde{}", "^": r"\textasciicircum{}"}
     return "".join(replacements.get(c, c if ord(c) < 128 else " ") for c in str(value))
+
+
+def contrast_excerpt(value, other, width=130):
+    """Show a compact span around the first response difference."""
+    value, other = " ".join(str(value).split()), " ".join(str(other).split())
+    difference = next((i for i, (left, right) in enumerate(zip(value, other))
+                       if left != right), min(len(value), len(other)))
+    start = max(0, difference - 24)
+    if start:
+        start = value.rfind(" ", 0, start) + 1
+    excerpt = textwrap.shorten(value[start:], width=width, placeholder="...")
+    return ("..." if start else "") + excerpt
+
+
+def prompt_bootstrap_interval(counts, seed=42, draws=2000):
+    scores = ([1.0] * counts.get("win", 0) + [0.5] * counts.get("tie", 0) +
+              [0.0] * counts.get("loss", 0))
+    if not scores:
+        return None
+    rng, n = random.Random(seed), len(scores)
+    estimates = sorted(sum(scores[rng.randrange(n)] for _ in range(n)) / n
+                       for _ in range(draws))
+    return estimates[int(.025 * draws)], estimates[int(.975 * draws)]
 
 
 def build(results, repository="", author="", draft=False, compile_pdf=True):
@@ -56,6 +81,10 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
             missing.append(f"Complete {name} generation count")
         if len({row["id"] for row in responses}) != len(responses):
             missing.append(f"Unique {name} generation IDs")
+        if any(not str(row.get("output", "")).strip() for row in responses):
+            missing.append(f"Nonempty {name} generations")
+        if any(not 0 <= row.get("generated_tokens", -1) <= 256 for row in responses):
+            missing.append(f"Valid {name} generation lengths")
         generation_settings.append(manifest["settings"])
     if generation_settings and (any(setting != generation_settings[0] for setting in generation_settings) or
                                 generation_settings[0].get("max_new_tokens") != 256 or
@@ -91,7 +120,8 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
         for track, s in summaries.items() if s['tie_adjusted_win_rate'] is not None
     ) or "Full-run results are not yet available; no model-quality conclusion is claimed.")
     provenance = [r"Repository: \url{" + repository + "}." if repository else "Repository publication is pending authentication.",
-                  r"Base models: \texttt{Qwen2.5-0.5B} and \texttt{SmolLM2-360M-Instruct} (HuggingFaceTB)."]
+                  r"Base checkpoints: \path{Qwen/Qwen2.5-0.5B} and \path{HuggingFaceTB/SmolLM2-360M-Instruct}.",
+                  "Training sources: UltraChat 200k, Anthropic HH-RLHF, and UltraFeedback Binarized; fixed general-helpfulness prompts: AlpacaEval. Exact repository identifiers and revisions are in the manifest."]
     if (results / "prepared" / "manifest.json").exists():
         manifest = read_json(results / "prepared" / "manifest.json")
         for track, splits in manifest["filtering"].items():
@@ -102,28 +132,28 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
     else:
         provenance.append("The intended counts are 30,000/1,000 for SFT and 15,000/1,000 for each main DPO track; these are not completed-run claims.")
     emit("provenance", "\n".join(provenance))
-    configuration = [r"\begin{table}[ht]\centering\scriptsize\setlength{\tabcolsep}{3pt}",
-                     r"\begin{tabularx}{\linewidth}{lXXXX}\toprule Track & Trainable parameters & Optimization & Batch and run & DPO reference\\\midrule"]
+    configuration = [r"\begin{table}[ht]\centering\small\setlength{\tabcolsep}{3pt}",
+                     r"\begin{tabularx}{\linewidth}{lXXX}\toprule Track & Strategy and DPO reference & Optimization & Batch and run\\\midrule"]
     for track in ["sft", "hh", "uf", "persona"]:
         if track not in runs:
-            configuration.append(tex(track.upper()) + r" & \multicolumn{4}{l}{No completed experiment available}\\")
+            configuration.append(tex(track.upper()) + r" & \multicolumn{3}{l}{No completed experiment available}\\")
             continue
         c = runs[track]["config"]
         if track == "persona":
-            strategy = r"LoRA $r=16$, $\alpha=32$, dropout .05; $q,v$ projections; 1.64M"
-            reference = r"SmolLM2-360M-Instruct, adapters disabled; $\beta=.1$"
+            strategy = r"LoRA $r=16$, $\alpha=32$, dropout .05; $q,v$; 1.64M"
+            reference = r"SmolLM2 base, adapters off; $\beta=.1$"
         else:
-            strategy = f"Full; {c['trainable_parameters']/1e6:.1f}M"
-            reference = (r"---" if track == "sft" else
-                         r"SFT best (step 938), frozen on T4:1; $\beta=.1$")
-        optimization = (f"AdamW; {c['lr']:g}; {tex(c['schedule'])}; "
-                        f"warmup {100*c.get('warmup_ratio',0):g}\\%; "
+            strategy = f"Full, {c['trainable_parameters']/1e6:.1f}M"
+            reference = (r"no reference" if track == "sft" else
+                         r"SFT best, step 938; frozen T4:1; $\beta=.1$")
+        optimization = (f"AdamW; LR {c['lr']:g}; {tex(c['schedule'])}; "
+                        f"WU {100*c.get('warmup_ratio',0):g}\\%; "
                         f"WD {c['weight_decay']:g}; clip 1")
         steps = runs[track]["status"].get("step", runs[track]["status"].get("final_step"))
         batch_run = (f"{c['batch_size']} $\\times$ {c['accumulation']} = "
-                     f"{c['batch_size']*c['accumulation']}; {c['epochs']} ep., {steps} logged steps")
-        configuration.append(f"{track.upper()} & {strategy} & {optimization} & {batch_run} & {reference}" + r"\\")
-    configuration += [r"\bottomrule\end{tabularx}\caption{Executed settings; batch is per device $\times$ accumulation = effective global batch. Logged steps count accumulation windows, including skipped updates. All tracks: seed 42, 512 tokens, FP32 trainable weights with FP16 autocast (GradScaler for full tuning), Kaggle T4 hardware.}\end{table}"]
+                     f"{c['batch_size']*c['accumulation']}; {c['epochs']} ep., {steps} windows")
+        configuration.append(f"{track.upper()} & {strategy}; {reference} & {optimization} & {batch_run}" + r"\\")
+    configuration += [r"\bottomrule\end{tabularx}\caption{Executed settings. WU: warmup; WD: weight decay; batch is per device $\times$ accumulation = effective global batch; windows include skipped updates. All tracks: seed 42, 512 tokens, FP32 trainable weights with FP16 autocast (GradScaler for full tuning), Kaggle T4. Evaluation: greedy, temperature/top-$p$ inactive, 256 new tokens, repetition/length penalties 1.0; literal Qwen instruction/response template or native SmolLM2 chat template.}\end{table}"]
     configuration.append(r"Evaluation uses greedy decoding in batches of four, with 256 maximum new tokens, repetition and length penalties of 1.0, and no active temperature or top-$p$ sampling. Qwen uses the instruction/response template below; SmolLM2 uses its native chat template. Both main DPO references resolve to \path{/kaggle/input/notebooks/hanzlasajjad2026/small-alignment-sft/results/sft/best}; the persona reference is the original SmolLM2 instruction checkpoint (manifest revision) with adapters disabled.")
     emit("configuration", "\n".join(configuration))
     emit("deviations", "The guide's main learning rates, data sizes, effective batch sizes, beta, and training lengths were retained. A stricter 256-token prompt filter was applied to SFT as well as DPO, preserving response supervision within the 512-token context; it changed which examples were eligible, not the target counts. The revision-pinned AlpacaEval JSON replaced its custom dataset loader after a compatibility problem; Kaggle's CUDA-compatible PyTorch stack was preserved, and incompatible optional torchao and torchvision imports were removed. Evaluation changed from serial decoding to left-padded batches of four, with identical greedy settings across compared models. On the five-prompt sanity evaluation for all eight output groups, batching reduced recorded execution time from about 629 to 241 seconds; this is a throughput observation, not evidence of improved model quality. No beta or learning-rate tuning was attempted.")
@@ -182,33 +212,40 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
         figure_tex.append(r"\begin{figure}[ht]\centering\includegraphics[width=\linewidth]{figures/preferences.pdf}\caption{Preference diagnostics, plotted without smoothing.}\end{figure}")
     emit("training", " ".join(training) or "No completed training trajectory is available yet.")
     emit("figures", "\n".join(figure_tex))
-    table = [r"\begin{table}[ht]\centering\small\begin{tabular}{lrrrrrr}\toprule Track & $N$ & Wins & Losses & Ties & Unknown & Failures\\\midrule"]
+    table = [r"\begin{table}[H]\centering\small\begin{tabular}{lrrrrrr}\toprule Track & $N$ & Wins & Losses & Ties & Unknown & Failures\\\midrule"]
     for track, s in summaries.items():
         c = s["counts"]
         table.append(f"{track.upper()} & {s['total']} & {c['win']} & {c['loss']} & {c['tie']} & {c['unknown']} & {c['failure']}" + r"\\")
-    table.append(r"\bottomrule\end{tabular}\caption{Candidate versus baseline, reported separately for each evaluation target.}\end{table}")
+    table.append(r"\bottomrule\end{tabular}\caption{HH/UF DPO versus SFT; persona LoRA versus the original SmolLM2 instruction model. Each track uses its designated prompts.}\end{table}")
     if not summaries:
         table = ["No completed pairwise evaluation is available yet."]
+    table_header_lines = len(table)
     analysis, examples = [], []
     for track, s in summaries.items():
         c = s["counts"]
         rate = s["tie_adjusted_win_rate"]
+        interval = prompt_bootstrap_interval(c) if rate is not None else None
         decisive = c['win'] / (c['win'] + c['loss']) if c['win'] + c['loss'] else None
         table.append(f"{track.upper()} judge: {tex(', '.join(s['judge_models']))}. "
                      f"Decisive: {c['win']}/{c['win']+c['loss']} = " +
                      (f"{decisive:.3f}; " if decisive is not None else "undefined; ") +
                      f"tie-adjusted: ({c['win']} + {c['tie']}/2)/{c['win']+c['loss']+c['tie']} = " +
                      (f"{rate:.3f}. " if rate is not None else "undefined. ") +
+                     (f"95\\% bootstrap interval [{interval[0]:.3f}, {interval[1]:.3f}]. " if interval else "") +
                      f"Unknown {100*s['unknown_rate']:.1f}\\%, failure {100*s['failure_rate']:.1f}\\% of {s['total']}; "
                      f"{s['retry_attempts']} successful-item retries.")
         if rate is None:
             analysis.append(f"{track.upper()} has no valid judged comparison, so relative quality is unresolved.")
         else:
             baseline = "original instruction model" if track == "persona" else "SFT"
-            better = "candidate" if rate > .5 else baseline if rate < .5 else "neither model"
-            analysis.append(f"On the {track.upper()} evaluation, {better} performed better under this judge: "
-                            f"the candidate's tie-adjusted rate was {100*rate:.1f}\\%, {100*(rate-.5):+.1f} percentage points "
+            candidate_name = {"hh": "HH-DPO", "uf": "UltraFeedback-DPO",
+                              "persona": "LoRA persona"}[track]
+            better = candidate_name if rate > .5 else baseline if rate < .5 else "neither model"
+            analysis.append(f"On the {track.upper()} evaluation, {better} had the higher observed score under this judge: "
+                            f"{candidate_name}'s tie-adjusted rate was {100*rate:.1f}\\%, {100*(rate-.5):+.1f} percentage points "
                             f"relative to parity, with {c['win']-c['loss']:+d} net decisive wins. "
+                            + ("The prompt-bootstrap interval includes parity. " if interval and interval[0] <= .5 <= interval[1]
+                               else "The prompt-bootstrap interval excludes parity. ") +
                             "This is a measured association on fixed prompts, not a causal estimate of the preference dataset's effect.")
             category_rates = []
             for category, counts in s["categories"].items():
@@ -235,6 +272,11 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
         pairs = read_jsonl(results / "generations" / f"pairs_{track}.jsonl")
         mapping = read_json(results / "generations" / f"pairs_{track}.identity.json")
         judgments = {r["id"]: r for r in read_jsonl(results / "judgments" / f"judged_{track}.jsonl")}
+        if track == "hh":
+            pairs = [pair for pair in pairs if pair.get("category") in
+                     {"benign_helpfulness", "calibration_and_uncertainty", "safe_transformation"}]
+        elif track == "persona":
+            pairs = [pair for pair in pairs if pair.get("category") != "safety"]
         for wanted in ["win", "loss"]:
             for pair in pairs:
                 j = judgments.get(pair["id"], {})
@@ -242,20 +284,86 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
                 if winner not in {"A", "B"}: continue
                 won = mapping[pair["id"]][winner] == mapping[pair["id"]]["candidate"]
                 if won != (wanted == "win"): continue
+                if track == "uf" and wanted == "win" and any(
+                    phrase in j.get("reason", "").lower()
+                    for phrase in ("both responses failed", "both models failed", "neither response")
+                ):
+                    continue
                 candidate_side = "A" if mapping[pair["id"]]["A"] == mapping[pair["id"]]["candidate"] else "B"
                 baseline_side = "B" if candidate_side == "A" else "A"
                 candidate_text = pair[f"response_{candidate_side.lower()}"]
                 baseline_text = pair[f"response_{baseline_side.lower()}"]
                 examples.append(r"\textbf{" + tex(f"{track.upper()} representative {wanted}, prompt {pair['prompt_id']}") + "}: " +
-                                tex(pair["instruction"][:110]) + " Baseline: ``" + tex(baseline_text[:110]) +
-                                "'' Candidate: ``" + tex(candidate_text[:110]) + "'' Judge: " +
-                                tex(j.get("reason", "")[:140]) + ".")
+                                tex(textwrap.shorten(" ".join(pair["instruction"].split()), width=110, placeholder="...")) +
+                                " Baseline: ``" + tex(contrast_excerpt(baseline_text, candidate_text)) +
+                                "'' Candidate: ``" + tex(contrast_excerpt(candidate_text, baseline_text)) +
+                                "'' Judge: " + tex(textwrap.shorten(" ".join(j.get("reason", "").split()),
+                                                                         width=140, placeholder="...")))
                 break
-    emit("results", "\n".join(table))
-    emit("analysis", "\n".join(analysis) or "Interpretation is pending measured comparisons. No improvement is assumed.")
-    emit("examples", "\n".join(examples))
+    if all(track in runs and track in summaries for track in ("hh", "uf")):
+        hh_accuracy = runs["hh"]["status"]["best_score"][0]
+        uf_accuracy = runs["uf"]["status"]["best_score"][0]
+        analysis.append(
+            f"Both main DPO runs used one epoch and $\\beta=.1$. Validation reward accuracy "
+            f"was {hh_accuracy:.3f} for HH and {uf_accuracy:.3f} for UF, but this measures "
+            "fitting to each preference source. The external judge uses different prompt sets, "
+            "so the two judged rates are not a head-to-head dataset comparison."
+        )
+    if "persona" in runs and "persona" in summaries:
+        style = summaries["persona"]["persona_dimensions"]["style_winner"]
+        analysis.append(
+            "Persona validation reward accuracy reached 1.000 on just 22 held-out pairs, "
+            f"whereas the 40-prompt style judge gave {style.get('win',0)} LoRA wins, "
+            f"{style.get('loss',0)} losses, and {style.get('tie',0)} ties. "
+            "The small validation score alone cannot establish style transfer on new prompts."
+        )
+    for track, baseline_file, candidate_file in [
+        ("HH", "hh_sft", "hh_hh"),
+        ("UF", "alpaca_sft", "alpaca_uf"),
+        ("persona", "persona_base", "persona_lora"),
+    ]:
+        paths = [results / "generations" / f"{name}.jsonl"
+                 for name in (baseline_file, candidate_file)]
+        if not all(path.exists() for path in paths):
+            continue
+        lengths = [[row["generated_tokens"] for row in read_jsonl(path)] for path in paths]
+        if not all(lengths):
+            continue
+        baseline, candidate = lengths
+        analysis.append(
+            f"{track.upper()} outputs averaged {sum(candidate)/len(candidate):.1f} generated "
+            f"tokens for the candidate versus {sum(baseline)/len(baseline):.1f} for its baseline; "
+            f"{sum(n == 256 for n in candidate)} versus {sum(n == 256 for n in baseline)} "
+            "reached the 256-token cap. Response length and truncation may affect judging."
+        )
+    agreement = []
+    for track in ("hh", "uf", "persona"):
+        alternate = results / "judgments_alt" / f"judged_{track}.jsonl"
+        primary = results / "judgments" / f"judged_{track}.jsonl"
+        if not alternate.exists() or not primary.exists() or track not in summaries:
+            continue
+        alternate_rows = read_jsonl(alternate)
+        if (not alternate_rows or
+                set(summaries[track]["judge_models"]) ==
+                {row.get("judge_model") for row in alternate_rows}):
+            continue
+        primary_rows = {row["id"]: row for row in read_jsonl(primary)}
+        comparable = [(primary_rows[row["id"]]["winner"], row["winner"])
+                      for row in alternate_rows if row["id"] in primary_rows and
+                      primary_rows[row["id"]].get("winner") in {"A", "B", "tie"} and
+                      row.get("winner") in {"A", "B", "tie"}]
+        if comparable:
+            agreement.append(f"{track.upper()} {sum(left == right for left, right in comparable)}/{len(comparable)}")
+    if agreement:
+        analysis.append("An independent Gemini 3.8 validation judge agreed with the final judge on " +
+                        ", ".join(agreement) + " overall A/B/tie decisions. This disagreement is a measured limit of model judging.")
+    emit("results", "\n".join(table[:table_header_lines]) + "\n\n" +
+         "\n\n".join(table[table_header_lines:]) +
+         "\n\nIntervals resample valid prompts 2,000 times with seed 42; they do not capture judge uncertainty.")
+    emit("analysis", "\n\n".join(analysis) or "Interpretation is pending measured comparisons. No improvement is assumed.")
+    emit("examples", "\n\n".join(examples))
     emit("limitations", "Missing evidence: " + tex("; ".join(missing)) + "." if missing else "All required experiment and evaluation artifacts were available when this report was built.")
-    emit("artifacts", r"Reproduction commands for tests, staged Kaggle jobs, and rebuilding the PDF are in the README. The repository archives \path{evidence/prepared/manifest.json} and \path{evidence/prepared/selected_examples_index.json}, configuration and metrics under \path{evidence/sft/}, \path{evidence/hh/}, \path{evidence/uf/}, and \path{evidence/persona/}, responses and blinded pairs under \path{evidence/generations/}, and decisions under \path{evidence/judgments/}. Best and final model weights remain in the private saved Kaggle notebook outputs named in the README.")
+    emit("artifacts", r"Reproduction commands for tests, staged Kaggle jobs, and rebuilding the PDF are in the README. The repository archives \path{evidence/prepared/manifest.json} and \path{evidence/prepared/selected_examples_index.json}, configuration and metrics under \path{evidence/sft/}, \path{evidence/hh/}, \path{evidence/uf/}, and \path{evidence/persona/}, responses and blinded pairs under \path{evidence/generations/}, and decisions under \path{evidence/judgments/} and \path{evidence/judgments_alt/}. Best and final model weights remain in the private saved Kaggle notebook outputs named in the README.")
     if compile_pdf:
         name = "draft_report" if draft else "final_report"
         subprocess.run(["latexmk", "-pdf", "-interaction=nonstopmode", "-halt-on-error", f"-jobname={name}", "main.tex"], cwd=report, check=True)
