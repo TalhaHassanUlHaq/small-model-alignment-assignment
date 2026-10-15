@@ -2,9 +2,12 @@
 import argparse
 import base64
 import io
+import json
 from pathlib import Path
 import zipfile
 from kaggle_control import api_client, ROOT
+from alignment.io import append_jsonl, read_jsonl, write_json
+from alignment.judge import parse_response, summarize
 
 
 def allow_kaggle_validating_state():
@@ -75,15 +78,94 @@ evaluate_saved_pairs.run(kbench.llms['google/gemini-3.6-flash'])
     return path
 
 
+def recover_judgments(download, generations, output, task):
+    """Recover saved judge answers from Benchmark run conversations.
+
+    The Benchmark download endpoint exports conversations and assertions, but
+    does not export arbitrary files the task wrote under /kaggle/working.
+    Every prompt and response is included in its run JSON, so those records
+    are the durable evidence for reconstruction and resumption.
+    """
+    download, generations, output = map(Path, (download, generations, output))
+    candidates = list(download.rglob(f"{task}*.run.json"))
+    if not candidates:
+        raise FileNotFoundError(f"No saved run JSON for {task} under {download}")
+    runs = [json.loads(path.read_text(encoding="utf-8")) for path in candidates]
+    runs = [r for r in runs if r.get("modelVersion", {}).get("slug") == "google/gemini-3.6-flash"]
+    if not runs:
+        raise ValueError("No Gemini 3.6 Flash benchmark run was downloaded")
+    run = max(runs, key=lambda r: r.get("endTime") or r.get("startTime") or "")
+    model = run["modelVersion"]["slug"]
+    expected = {}
+    for track in ("hh", "uf", "persona"):
+        for pair in read_jsonl(generations / f"pairs_{track}.jsonl"):
+            if pair["id"] in expected:
+                raise ValueError(f"Duplicate pair ID across tracks: {pair['id']}")
+            expected[pair["id"]] = track
+    recovered, requests_seen, invalid = {}, {}, []
+    for conversation in run.get("conversations", []):
+        for request in conversation.get("requests", []):
+            contents = request.get("contents", [])
+            prompts = [part.get("text", "") for content in contents
+                       if content.get("role") == "CONTENT_ROLE_USER" for part in content.get("parts", [])]
+            answers = [part.get("text", "") for content in contents
+                       if content.get("role") == "CONTENT_ROLE_ASSISTANT" for part in content.get("parts", [])]
+            if not prompts or "DATA:\n" not in prompts[-1]:
+                continue
+            visible = json.loads(prompts[-1].split("DATA:\n", 1)[1])
+            ids = [item["id"] for item in visible]
+            if any(pair_id not in expected for pair_id in ids):
+                raise ValueError("Benchmark response contains an unexpected pair ID")
+            for pair_id in ids:
+                requests_seen[pair_id] = requests_seen.get(pair_id, 0) + 1
+            if not answers:
+                invalid.append(dict(request=request.get("id"), ids=ids, error="missing_response"))
+                continue
+            try:
+                parsed = parse_response(answers[-1])
+            except (ValueError, KeyError, TypeError) as error:
+                invalid.append(dict(request=request.get("id"), ids=ids, error=type(error).__name__))
+                continue
+            for pair_id in ids:
+                result = parsed.get(pair_id, {})
+                required = ["winner"]
+                if expected[pair_id] == "persona":
+                    required += ["style_winner", "usefulness_winner", "safety_winner"]
+                if not all(result.get(key) in {"A", "B", "tie", "unknown"} for key in required):
+                    invalid.append(dict(request=request.get("id"), ids=[pair_id], error="invalid_judgment"))
+                    continue
+                recovered[pair_id] = dict(result, judge_model=model, attempts=requests_seen[pair_id])
+    output.mkdir(parents=True, exist_ok=True)
+    write_json(output / "recovery_audit.json", dict(task=task, model=model, run_state=run.get("state"),
+                                                     expected=len(expected), recovered=len(recovered),
+                                                     requests_seen=requests_seen, invalid=invalid))
+    summaries = {}
+    for track in ("hh", "uf", "persona"):
+        pairs = generations / f"pairs_{track}.jsonl"
+        judgments = output / f"judged_{track}.jsonl"
+        judgments.write_text("", encoding="utf-8")
+        for pair in read_jsonl(pairs):
+            if pair["id"] in recovered:
+                append_jsonl(judgments, recovered[pair["id"]])
+        summaries[track] = summarize(pairs, judgments, output / f"judged_{track}.summary.json")
+    return summaries
+
+
 def main():
     allow_kaggle_validating_state()
     p = argparse.ArgumentParser()
-    p.add_argument("action", choices=["push", "run", "status", "download", "logs"])
+    p.add_argument("action", choices=["push", "run", "status", "download", "logs", "recover"])
     p.add_argument("--task", default="small-alignment-judge-smoke")
     p.add_argument("--generations")
     p.add_argument("--previous")
     p.add_argument("--output", default="artifacts/benchmark")
+    p.add_argument("--download", default="artifacts/benchmark")
     args = p.parse_args()
+    if args.action == "recover":
+        if not args.generations:
+            p.error("recover requires --generations")
+        print(recover_judgments(args.download, args.generations, args.output, args.task))
+        return
     api = api_client()
     if args.action == "push":
         api.benchmarks_tasks_push_cli(args.task, str(prepare(args.task, args.generations, args.previous)))

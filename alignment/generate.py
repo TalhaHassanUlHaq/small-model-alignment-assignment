@@ -12,6 +12,7 @@ def generate(model_path, prompts, output, generator, config, revision=None, pers
     tokenizer = AutoTokenizer.from_pretrained(model_path, revision=revision)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "left"
     model = AutoModelForCausalLM.from_pretrained(model_path, revision=revision, torch_dtype=torch.float16).to("cuda:0")
     if adapter:
         from peft import PeftModel
@@ -27,31 +28,48 @@ def generate(model_path, prompts, output, generator, config, revision=None, pers
     write_json(manifest, dict(signature=signature, model=str(model_path), revision=revision,
                              adapter=str(adapter), settings=config, expected_count=len(prompts)))
     completed = {r["id"] for r in read_jsonl(output)}
+    batch_size = config.get("batch_size", 1)
+    if batch_size < 1:
+        raise ValueError("Generation batch size must be positive")
     with torch.inference_mode():
-        for i, row in enumerate(prompts):
-            if row["id"] in completed:
+        for start in range(0, len(prompts), batch_size):
+            pending = [(i, row) for i, row in enumerate(prompts[start:start+batch_size], start)
+                       if row["id"] not in completed]
+            if not pending:
                 continue
-            if persona:
-                text = tokenizer.apply_chat_template([dict(role="user", content=row["instruction"])],
-                                                       tokenize=False, add_generation_prompt=True)
-            else:
-                text = prompt_text(row["instruction"])
-            # Preserve the response prefix at the right when evaluation prompts are long.
-            token_ids = tokenizer.encode(text, add_special_tokens=False)[-256:]
-            ids = torch.tensor([token_ids], device="cuda:0")
-            result = model.generate(input_ids=ids, attention_mask=torch.ones_like(ids),
-                                    pad_token_id=tokenizer.pad_token_id, eos_token_id=tokenizer.eos_token_id,
+            encoded = []
+            for _, row in pending:
+                if persona:
+                    formatted = tokenizer.apply_chat_template(
+                        [dict(role="user", content=row["instruction"])],
+                        tokenize=False, add_generation_prompt=True)
+                else:
+                    formatted = prompt_text(row["instruction"])
+                # Keep the response prefix when the evaluation prompt is long.
+                encoded.append(tokenizer.encode(formatted, add_special_tokens=False)[-256:])
+            width = max(map(len, encoded))
+            token_ids = [[tokenizer.pad_token_id] * (width - len(ids)) + ids for ids in encoded]
+            masks = [[0] * (width - len(ids)) + [1] * len(ids) for ids in encoded]
+            ids = torch.tensor(token_ids, device="cuda:0")
+            attention = torch.tensor(masks, device="cuda:0")
+            result = model.generate(input_ids=ids, attention_mask=attention,
+                                    pad_token_id=tokenizer.pad_token_id,
+                                    eos_token_id=tokenizer.eos_token_id,
                                     do_sample=False, max_new_tokens=config["max_new_tokens"],
                                     repetition_penalty=config["repetition_penalty"])
-            response = tokenizer.decode(result[0, ids.shape[1]:], skip_special_tokens=True)
-            if not response.strip():
-                print("WARNING: empty generation", row["id"], flush=True)
-            saved = dict(row, output=response, generator=generator, generated_tokens=result.shape[1]-ids.shape[1])
-            append_jsonl(output, saved)
-            if i < 5:
-                print("SANITY", generator, row["id"], repr(response), flush=True)
-            if (i + 1) % 25 == 0:
-                print("Generated", generator, i+1, "/", len(prompts), flush=True)
+            for (i, row), sequence in zip(pending, result):
+                new_ids = sequence[width:].tolist()
+                response = tokenizer.decode(new_ids, skip_special_tokens=True)
+                if not response.strip():
+                    print("WARNING: empty generation", row["id"], flush=True)
+                eos = tokenizer.eos_token_id
+                generated_tokens = new_ids.index(eos) + 1 if eos in new_ids else len(new_ids)
+                append_jsonl(output, dict(row, output=response, generator=generator,
+                                          generated_tokens=generated_tokens))
+                if i < 5:
+                    print("SANITY", generator, row["id"], repr(response), flush=True)
+            if (start + len(pending)) % 25 == 0 or start + batch_size >= len(prompts):
+                print("Generated", generator, min(start+batch_size, len(prompts)), "/", len(prompts), flush=True)
     rows = read_jsonl(output)
     if len(rows) != len(prompts) or len({r["id"] for r in rows}) != len(prompts):
         raise ValueError("Generation count mismatch")

@@ -67,28 +67,42 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
         manifest = read_json(results / "prepared" / "manifest.json")
         for track, splits in manifest["filtering"].items():
             provenance.append(f"{track.upper()}: {splits['train']['count']:,} training and {splits['val']['count']:,} validation examples.")
+        provenance.append(f"Persona: {manifest['persona']['train']} training and {manifest['persona']['val']} validation examples.")
+        provenance.append("Fixed evaluation sets: 300 AlpacaEval prompts, 300 supplied HH prompts, and 40 supplied persona prompts.")
         provenance.append("Exact source revisions and hashes are included in the accompanying manifest.")
     else:
         provenance.append("The intended counts are 30,000/1,000 for SFT and 15,000/1,000 for each main DPO track; these are not completed-run claims.")
     emit("provenance", "\n".join(provenance))
-    configuration = [r"\begin{table}[ht]\centering\small",
-                     r"\begin{tabularx}{\linewidth}{lXXXX}\toprule Track & Strategy & LR / schedule & Batch $\times$ accum. & Epochs / $\beta$\\\midrule"]
+    configuration = [r"\begin{table}[ht]\centering\scriptsize\setlength{\tabcolsep}{3pt}",
+                     r"\begin{tabularx}{\linewidth}{lXXXX}\toprule Track & Trainable parameters & Optimization & Batch and run & DPO reference\\\midrule"]
     for track in ["sft", "hh", "uf", "persona"]:
         if track not in runs:
             configuration.append(tex(track.upper()) + r" & \multicolumn{4}{l}{No completed experiment available}\\")
             continue
         c = runs[track]["config"]
-        strategy = "LoRA r=16" if track == "persona" else "Full parameters"
-        configuration.append(f"{track.upper()} & {strategy} & {c['lr']:g} / {tex(c['schedule'])} & {c['batch_size']} $\\times$ {c['accumulation']} & {c['epochs']} / {c.get('beta','--')}" + r"\\")
-    configuration += [r"\bottomrule\end{tabularx}\caption{Executed configurations only. Effective batch size is the product shown.}\end{table}"]
-    configuration.append(r"Maximum sequence length: 512. FP32 trainable weights with FP16 autocast and gradient scaling; gradient clipping: 1.0. SFT uses 3\% warmup and weight decay 0.1; main DPO uses no warmup, no LR decay, and zero weight decay. All comparisons use greedy decoding, at most 256 new tokens, and repetition penalty 1.0; temperature and top-p are inactive. These are planned defaults where a completed configuration is absent.")
+        if track == "persona":
+            strategy = r"LoRA $r=16$, $\alpha=32$, dropout .05; $q,v$ projections; 1.64M"
+            reference = r"SmolLM2-360M-Instruct, adapters disabled; $\beta=.1$"
+        else:
+            strategy = f"Full; {c['trainable_parameters']/1e6:.1f}M"
+            reference = (r"---" if track == "sft" else
+                         r"SFT best (step 938), frozen on T4:1; $\beta=.1$")
+        optimization = (f"AdamW; {c['lr']:g}; {tex(c['schedule'])}; "
+                        f"warmup {100*c.get('warmup_ratio',0):g}\\%; "
+                        f"WD {c['weight_decay']:g}; clip 1")
+        steps = runs[track]["status"].get("step", runs[track]["status"].get("final_step"))
+        batch_run = (f"{c['batch_size']} $\\times$ {c['accumulation']} = "
+                     f"{c['batch_size']*c['accumulation']}; {c['epochs']} ep., {steps} logged steps")
+        configuration.append(f"{track.upper()} & {strategy} & {optimization} & {batch_run} & {reference}" + r"\\")
+    configuration += [r"\bottomrule\end{tabularx}\caption{Executed settings; batch is per device $\times$ accumulation = effective global batch. Logged steps count accumulation windows, including skipped updates. All tracks: seed 42, 512 tokens, FP32 trainable weights with FP16 autocast (GradScaler for full tuning), Kaggle T4 hardware.}\end{table}"]
+    configuration.append(r"Evaluation uses greedy decoding in batches of four, with 256 maximum new tokens, repetition and length penalties of 1.0, and no active temperature or top-$p$ sampling. Qwen uses the instruction/response template below; SmolLM2 uses its native chat template. The main DPO reference is exactly the selected SFT-best checkpoint, not the final checkpoint; the persona reference is the original instruction model with adapters disabled.")
     emit("configuration", "\n".join(configuration))
-    emit("deviations", "The reference learning rates, data sizes, effective batch sizes, beta and training lengths are retained for the main experiments. Prompts longer than 256 tokens are filtered in SFT as well as DPO to preserve response supervision. AlpacaEval is read from its revision-pinned JSON file, avoiding its custom loader. The environment preserves Kaggle's CUDA-compatible PyTorch; optional torchao and torchvision installations are removed to avoid incompatible optional imports. These are implementation and compatibility choices, not measured performance improvements.")
+    emit("deviations", "The reference learning rates, data sizes, effective batch sizes, beta and training lengths are retained for the main experiments. Prompts longer than 256 tokens are filtered in SFT as well as DPO to preserve response supervision. AlpacaEval is read from its revision-pinned JSON file, avoiding its custom loader. The environment preserves Kaggle's CUDA-compatible PyTorch; optional torchao and torchvision installations are removed to avoid incompatible optional imports. Generation batches four left-padded prompts to reduce evaluation time; decoding parameters stay identical within each comparison. These are resource and compatibility choices, not measured performance improvements.")
     training, figure_tex = [], []
     fig, axes = plt.subplots(2, 2, figsize=(10, 5.8), constrained_layout=True)
     plotted = False
     for ax, track in zip(axes.flat, ["sft", "hh", "uf", "persona"]):
-        ax.set_title(track.upper()); ax.set_xlabel("Optimizer step"); ax.set_ylabel("Loss")
+        ax.set_title(track.upper()); ax.set_xlabel("Logged step"); ax.set_ylabel("Loss")
         ax.grid(alpha=.2)
         if track not in runs:
             ax.text(.5, .5, "Awaiting completed run", ha="center", transform=ax.transAxes)
@@ -107,6 +121,17 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
             training.append(f"{track.upper()} validation loss changed from {first['val_loss']:.4f} at step {first['step']} to {last['val_loss']:.4f} at step {last['step']}.")
             if "reward_accuracy" in last:
                 training.append(f"Final reward accuracy was {last['reward_accuracy']:.3f}, with mean reward margin {last['reward_margin']:.3f}.")
+        if track == "persona":
+            final = runs[track]["status"]["best_metrics"]
+            training.append(f"Persona best step {runs[track]['status']['best_step']} had validation DPO loss {final['eval_loss']:.4f}, reward accuracy {final['eval_rewards/accuracies']:.3f}, and mean margin {final['eval_rewards/margins']:.3f} on 22 examples.")
+        elif values:
+            score = runs[track]["status"]["best_score"][0]
+            training.append(f"{track.upper()} selected step {last['step']} by " +
+                            (f"minimum validation loss {abs(score):.4f}." if track == "sft" else
+                             f"maximum validation reward accuracy {score:.3f}."))
+            skipped = sum(bool(r.get("skipped_update")) for r in records)
+            if skipped:
+                training.append(f"FP16 gradient scaling skipped {skipped} of {runs[track]['status']['step']} {track.upper()} accumulation windows after non-finite gradients; {runs[track]['status']['step']-skipped} optimizer updates were applied.")
     if plotted:
         fig.savefig(figures / "training.pdf")
         figure_tex.append(r"\begin{figure}[ht]\centering\includegraphics[width=\linewidth]{figures/training.pdf}\caption{Recorded training and validation losses; no smoothing.}\end{figure}")
@@ -122,7 +147,7 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
                 if points:
                     ax.plot(*zip(*points), marker=".", label=track.upper())
         for ax, title in zip(axes, ["Validation reward accuracy", "Validation reward margin"]):
-            ax.set(title=title, xlabel="Optimizer step"); ax.grid(alpha=.2)
+            ax.set(title=title, xlabel="Logged step"); ax.grid(alpha=.2)
             if ax.lines: ax.legend(fontsize=8)
         fig.savefig(figures / "preferences.pdf"); plt.close(fig)
         figure_tex.append(r"\begin{figure}[ht]\centering\includegraphics[width=\linewidth]{figures/preferences.pdf}\caption{Preference diagnostics, plotted without smoothing.}\end{figure}")
@@ -139,11 +164,30 @@ def build(results, repository="", author="", draft=False, compile_pdf=True):
     for track, s in summaries.items():
         c = s["counts"]
         rate = s["tie_adjusted_win_rate"]
-        table.append(f"{track.upper()} judge: {tex(', '.join(s['judge_models']))}. Tie-adjusted win rate: " + (f"{rate:.3f}." if rate is not None else "undefined (no valid comparisons)."))
-        analysis.append(f"For {track.upper()}, the candidate recorded {c['win']-c['loss']:+d} more wins than losses. This is an observed difference under this judge and evaluation set, not a causal estimate of the effect of the preference dataset.")
+        decisive = c['win'] / (c['win'] + c['loss']) if c['win'] + c['loss'] else None
+        table.append(f"{track.upper()} judge: {tex(', '.join(s['judge_models']))}. "
+                     f"Decisive: {c['win']}/{c['win']+c['loss']} = " +
+                     (f"{decisive:.3f}; " if decisive is not None else "undefined; ") +
+                     f"tie-adjusted: ({c['win']} + {c['tie']}/2)/{c['win']+c['loss']+c['tie']} = " +
+                     (f"{rate:.3f}. " if rate is not None else "undefined. ") +
+                     f"Unknown {100*s['unknown_rate']:.1f}\\%, failure {100*s['failure_rate']:.1f}\\% of {s['total']}; "
+                     f"{s['retry_attempts']} successful-item retries.")
+        if rate is None:
+            analysis.append(f"{track.upper()} has no valid judged comparison, so relative quality is unresolved.")
+        else:
+            baseline = "original instruction model" if track == "persona" else "SFT"
+            better = "candidate" if rate > .5 else baseline if rate < .5 else "neither model"
+            analysis.append(f"On the {track.upper()} evaluation, {better} performed better under this judge: "
+                            f"the candidate's tie-adjusted rate was {100*rate:.1f}\\%, {100*(rate-.5):+.1f} percentage points "
+                            f"relative to parity, with {c['win']-c['loss']:+d} net decisive wins. "
+                            "This is a measured association on fixed prompts, not a causal estimate of the preference dataset's effect.")
         if track == "persona":
             for dimension, counts in s["persona_dimensions"].items():
-                table.append(tex(dimension.replace("_winner", "")) + ": " + tex(dict(counts)) + ".")
+                total = sum(counts.values())
+                table.append("Persona " + tex(dimension.replace("_winner", "")) + ": " +
+                             f"{counts.get('win',0)} wins, {counts.get('loss',0)} losses, "
+                             f"{counts.get('tie',0)} ties, {counts.get('unknown',0)} unknown "
+                             f"({total} valid dimension labels).")
         pairs = read_jsonl(results / "generations" / f"pairs_{track}.jsonl")
         mapping = read_json(results / "generations" / f"pairs_{track}.identity.json")
         judgments = {r["id"]: r for r in read_jsonl(results / "judgments" / f"judged_{track}.jsonl")}

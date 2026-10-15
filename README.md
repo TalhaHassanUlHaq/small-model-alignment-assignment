@@ -27,7 +27,7 @@ python -X utf8 scripts/kaggle_control.py push --stage persona --source OWNER/sma
 
 Wait for each dependency to finish before launching its consumer. Kaggle may limit concurrent GPU sessions. Never cancel unrelated notebooks. `requirements-kaggle.txt` pins the tested APIs while retaining Kaggle's PyTorch/CUDA installation. The smoke run exercised two T4 GPUs with 512-token SFT and DPO batches.
 
-`configs/experiments.json` defines the guide configuration. Fixed subsets use seed 42; single-turn preference pairs are filtered before selecting counts. The saved manifest includes revisions, filtering counts, IDs, and hashes. Training saves best/final checkpoints and optimizer, scheduler, scaler, RNG, epoch, and sample-offset state. A resume requires an identical configuration:
+`configs/experiments.json` defines the guide configuration. Fixed subsets use seed 42; single-turn preference pairs are filtered before selecting counts. The saved manifest includes revisions, filtering counts, and hashes; selected-example files include source row indices and IDs. Training saves best/final checkpoints and optimizer, scheduler, scaler, RNG, epoch, and sample-offset state. A resume requires an identical configuration:
 
 ```bash
 python -m alignment.train --track sft --data DATA --output OUTPUT --resume CHECKPOINT
@@ -46,9 +46,10 @@ python -X utf8 scripts/benchmark_control.py run
 python -X utf8 scripts/benchmark_control.py push --task small-alignment-judging --generations GENERATIONS
 python -X utf8 scripts/benchmark_control.py run --task small-alignment-judging
 python -X utf8 scripts/benchmark_control.py download --task small-alignment-judging
+python -X utf8 scripts/benchmark_control.py recover --task small-alignment-judging --download artifacts/benchmark --generations artifacts/experiment/results/generations --output artifacts/experiment/results/judgments
 ```
 
-The first three commands validate judge access. Benchmark tasks stay private unless explicitly published. Full judging only reads saved pairs. To resume a task, pass the prior judgment directory with `--previous`. Main comparisons each contain 300 pairs; persona contains 40. Unknowns and failures are not counted as wins. The report distinguishes decisive and tie-adjusted rates and does not claim official length-controlled AlpacaEval scores.
+The first three commands validate judge access. Benchmark tasks stay private unless explicitly published. Full judging only reads saved pairs. Kaggle Benchmark downloads export saved conversations rather than files written by the task, so `recover` reconstructs judgment JSONL files from those conversations and audits missing or invalid responses. To resume a task, pass the recovered judgment directory with `--previous`. Main comparisons each contain 300 pairs; persona contains 40. Unknowns and failures are not counted as wins. The report distinguishes decisive and tie-adjusted rates and does not claim official length-controlled AlpacaEval scores.
 
 Download each completed notebook's results to a common artifact root:
 
