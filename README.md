@@ -70,10 +70,10 @@ The saved private notebook slugs for this run are `hanzlasajjad2026/small-alignm
 ## LaTeX report
 
 ```powershell
-python -X utf8 scripts/build_report.py --results artifacts/experiment/results --repository https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment --author "Student ID: 27100306"
+python -X utf8 scripts/build_report.py --results evidence --repository https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment --author "Student ID: 27100306"
 ```
 
-The builder creates vector figures and LaTeX tables from saved metrics and judgments, then compiles with `latexmk`/PDFLaTeX/BibTeX. It rejects missing experiments and PDFs over eight pages. `--draft` explicitly permits incomplete evidence and produces `report/draft_report.pdf`; it never substitutes for a final report. The deliverable is `report/final_report.pdf` plus `main.tex`, bibliography, generated inputs, and figures.
+The builder creates vector figures and LaTeX tables from the archived `evidence/` metrics and judgments, then compiles with `latexmk`/PDFLaTeX/BibTeX. It rejects missing experiments and PDFs over eight pages. `--draft` explicitly permits incomplete evidence and produces `report/draft_report.pdf`; it never substitutes for a final report. The deliverable is `report/final_report.pdf` plus `main.tex`, bibliography, generated inputs, and figures. See `SUBMISSION.md` for the submission checklist and direct artifact links.
 
 The completed private `small-alignment-judging` benchmark used `google/gemini-3.6-flash` for the report and independently ran `google/gemini-3.8-flash` for validation. All 640 pairs were recovered, with no unresolved failures. Under the report judge, HH-DPO versus SFT recorded 140 wins, 102 losses, and 58 ties (56.3% tie-adjusted); UltraFeedback-DPO versus SFT recorded 112 wins, 128 losses, and 60 ties (47.3%); persona LoRA versus the original instruction model recorded 13 wins, 14 losses, and 13 ties (48.8%). These are raw pairwise rates on separate fixed sets, not official AlpacaEval scores. The final PDF is seven pages, including references.
 
