@@ -1,4 +1,4 @@
-# Submission — Talha Hassan Ul Ahq (Student ID 27100306)
+# Submission — Talha Hassan Ul Haq (Student ID 27100306)
 
 GitHub repository: https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment
 
@@ -20,7 +20,7 @@ Recheck the adapter and rebuild the report from the evidence committed to this r
 
 ```powershell
 python -m pytest -q tests --basetemp .pytest_cache/local-run
-python -X utf8 scripts/build_report.py --results evidence --repository https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment --author "Talha Hassan Ul Ahq (Student ID: 27100306)"
+python -X utf8 scripts/build_report.py --results evidence --repository https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment --author "Talha Hassan Ul Haq (Student ID: 27100306)"
 ```
 
 The second command requires the Python dependencies and `latexmk`/PDFLaTeX/BibTeX described in [README.md](README.md). Archived configurations, metrics, generations, pair identities, and judgments are in [evidence](evidence); full training checkpoints remain in the private saved Kaggle notebooks listed in the README. AI assistance was used to develop and debug this project; review the implementation and follow the course's disclosure requirements when submitting.

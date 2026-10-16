@@ -70,7 +70,7 @@ The saved private notebook slugs for this run are `hanzlasajjad2026/small-alignm
 ## LaTeX report
 
 ```powershell
-python -X utf8 scripts/build_report.py --results evidence --repository https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment --author "Talha Hassan Ul Ahq (Student ID: 27100306)"
+python -X utf8 scripts/build_report.py --results evidence --repository https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment --author "Talha Hassan Ul Haq (Student ID: 27100306)"
 ```
 
 The builder creates vector figures and LaTeX tables from the archived `evidence/` metrics and judgments, then compiles with `latexmk`/PDFLaTeX/BibTeX. It rejects missing experiments and PDFs over eight pages. `--draft` explicitly permits incomplete evidence and produces `report/draft_report.pdf`; it never substitutes for a final report. The deliverable is `report/final_report.pdf` plus `main.tex`, bibliography, generated inputs, and figures. See `SUBMISSION.md` for the submission checklist and direct artifact links.
