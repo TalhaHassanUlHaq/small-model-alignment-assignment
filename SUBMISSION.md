@@ -1,8 +1,8 @@
-# Submission — Student ID 27100306
+# Submission — Talha Hassan Ul Ahq (Student ID 27100306)
 
 GitHub repository: https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment
 
-This repository is private. Course staff need repository access to inspect the source and archived evidence.
+This repository is public. Course staff can inspect the source and archived evidence through the link above.
 
 The assignment manual's five submission items are here:
 
@@ -20,7 +20,11 @@ Recheck the adapter and rebuild the report from the evidence committed to this r
 
 ```powershell
 python -m pytest -q tests --basetemp .pytest_cache/local-run
-python -X utf8 scripts/build_report.py --results evidence --repository https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment --author "Student ID: 27100306"
+python -X utf8 scripts/build_report.py --results evidence --repository https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment --author "Talha Hassan Ul Ahq (Student ID: 27100306)"
 ```
 
 The second command requires the Python dependencies and `latexmk`/PDFLaTeX/BibTeX described in [README.md](README.md). Archived configurations, metrics, generations, pair identities, and judgments are in [evidence](evidence); full training checkpoints remain in the private saved Kaggle notebooks listed in the README. AI assistance was used to develop and debug this project; review the implementation and follow the course's disclosure requirements when submitting.
+
+## LMS submission
+
+The assignment manual asks for five items. Paste the public repository URL into the GitHub link field. Upload `report/final_report.pdf` as the final report. If the LMS has separate fields for plots, upload `report/figures/training.pdf` and `report/figures/preferences.pdf`; both are also embedded in the report. For the evaluation-summary field, point to Section 5 of the report and the three linked JSON summaries above. For an adapter/source field, point to the repository's root-level `submission_adapter.py` (or upload that file if the LMS requires a file). If the LMS provides just one file slot, upload the report PDF and put the repository URL in the comments or link field.

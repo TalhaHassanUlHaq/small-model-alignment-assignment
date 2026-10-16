@@ -70,14 +70,14 @@ The saved private notebook slugs for this run are `hanzlasajjad2026/small-alignm
 ## LaTeX report
 
 ```powershell
-python -X utf8 scripts/build_report.py --results evidence --repository https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment --author "Student ID: 27100306"
+python -X utf8 scripts/build_report.py --results evidence --repository https://github.com/TalhaHassanUlHaq/small-model-alignment-assignment --author "Talha Hassan Ul Ahq (Student ID: 27100306)"
 ```
 
 The builder creates vector figures and LaTeX tables from the archived `evidence/` metrics and judgments, then compiles with `latexmk`/PDFLaTeX/BibTeX. It rejects missing experiments and PDFs over eight pages. `--draft` explicitly permits incomplete evidence and produces `report/draft_report.pdf`; it never substitutes for a final report. The deliverable is `report/final_report.pdf` plus `main.tex`, bibliography, generated inputs, and figures. See `SUBMISSION.md` for the submission checklist and direct artifact links.
 
 The completed private `small-alignment-judging` benchmark used `google/gemini-3.6-flash` for the report and independently ran `google/gemini-3.8-flash` for validation. All 640 pairs were recovered, with no unresolved failures. Under the report judge, HH-DPO versus SFT recorded 140 wins, 102 losses, and 58 ties (56.3% tie-adjusted); UltraFeedback-DPO versus SFT recorded 112 wins, 128 losses, and 60 ties (47.3%); persona LoRA versus the original instruction model recorded 13 wins, 14 losses, and 13 ties (48.8%). These are raw pairwise rates on separate fixed sets, not official AlpacaEval scores. The final PDF is seven pages, including references.
 
-After judging, archive the compact evidence into the private repository. This copies configurations, selected evaluation prompts, the training/validation row-ID index, the small persona dataset, metrics, generation and pair files, identity mappings, primary and alternate judgments, and recovery audits; model weights and large main training-set copies stay in the private Kaggle notebook outputs.
+After judging, archive the compact evidence into the repository. This copies configurations, selected evaluation prompts, the training/validation row-ID index, the small persona dataset, metrics, generation and pair files, identity mappings, primary and alternate judgments, and recovery audits; model weights and large main training-set copies stay in the private Kaggle notebook outputs.
 
 ```powershell
 python -X utf8 scripts/archive_evidence.py --source artifacts/experiment/results --destination evidence
